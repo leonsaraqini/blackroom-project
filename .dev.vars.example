@@ -1,0 +1,7 @@
+# Freemius Dashboard -> Product -> Settings -> API & Keys
+FREEMIUS_PRODUCT_ID="your_product_id"
+FREEMIUS_PUBLIC_KEY="pk_your_product_public_key"
+FREEMIUS_SECRET_KEY="sk_your_product_secret_key"
+
+# Freemius calls this the "API Bearer Authorization Token".
+FREEMIUS_API_KEY="your_api_bearer_authorization_token"

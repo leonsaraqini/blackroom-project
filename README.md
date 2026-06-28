@@ -1,4 +1,8 @@
-# React + Vite + Hono + Cloudflare Workers
+# Blackroom
+
+Blackroom's React site runs on Vite and Cloudflare Workers. The Hono worker
+provides the Freemius sandbox endpoint and proxies `/admin/*` to the telephony
+worker.
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/vite-react-template)
 
@@ -48,6 +52,9 @@ Install dependencies:
 npm install
 ```
 
+Copy `.dev.vars.example` to `.dev.vars` and add the Freemius credentials if you
+need to test `/shop-test` locally. Never commit `.dev.vars`.
+
 Start the development server with:
 
 ```bash
@@ -74,6 +81,16 @@ Deploy your project to Cloudflare Workers:
 
 ```bash
 npm run build && npm run deploy
+```
+
+Before using the Freemius sandbox checkout in production, configure its values
+as Worker secrets:
+
+```bash
+npx wrangler secret put FREEMIUS_PRODUCT_ID
+npx wrangler secret put FREEMIUS_API_KEY
+npx wrangler secret put FREEMIUS_SECRET_KEY
+npx wrangler secret put FREEMIUS_PUBLIC_KEY
 ```
 
 Monitor your workers:
