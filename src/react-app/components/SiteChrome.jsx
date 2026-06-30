@@ -93,7 +93,6 @@ export default function SiteChrome({ pathname }) {
     <>
       <Cursor />
       <Preloader />
-      <div className="mil-progress-track"><div className="mil-progress" /></div>
       <Menu pathname={pathname} />
       <div className="mil-curtain" />
       <FixedFrame />

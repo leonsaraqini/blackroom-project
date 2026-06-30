@@ -611,13 +611,7 @@ $(function () {
             scrollTop: 0,
         }, 0);
 
-        gsap.to('.mil-progress', {
-            height: 0,
-            ease: 'sine',
-            onComplete: () => {
-                ScrollTrigger.refresh()
-            },
-        });
+        ScrollTrigger.refresh();
         /***************************
 
          menu

@@ -54,50 +54,6 @@ function setupForms() {
   return () => document.removeEventListener('submit', onSubmit)
 }
 
-function setupScrollProgress() {
-  const progress = document.querySelector('.mil-progress')
-  if (!progress) return () => {}
-
-  let frame = 0
-
-  const update = () => {
-    frame = 0
-    const scrollTop = window.scrollY || document.documentElement.scrollTop
-    const scrollRange = Math.max(
-      0,
-      document.documentElement.scrollHeight - document.documentElement.clientHeight,
-    )
-    const percentage = scrollRange > 0
-      ? Math.min(100, Math.max(0, (scrollTop / scrollRange) * 100))
-      : 0
-
-    progress.style.height = `${percentage}%`
-  }
-
-  const requestUpdate = () => {
-    if (!frame) frame = window.requestAnimationFrame(update)
-  }
-
-  window.addEventListener('scroll', requestUpdate, { passive: true })
-  window.addEventListener('resize', requestUpdate, { passive: true })
-  window.addEventListener('load', requestUpdate)
-
-  const resizeObserver = typeof ResizeObserver === 'undefined'
-    ? null
-    : new ResizeObserver(requestUpdate)
-  resizeObserver?.observe(document.documentElement)
-
-  requestUpdate()
-
-  return () => {
-    window.removeEventListener('scroll', requestUpdate)
-    window.removeEventListener('resize', requestUpdate)
-    window.removeEventListener('load', requestUpdate)
-    resizeObserver?.disconnect()
-    if (frame) window.cancelAnimationFrame(frame)
-  }
-}
-
 export default function useLegacyRuntime(title) {
   useEffect(() => {
     document.title = title
@@ -108,12 +64,10 @@ export default function useLegacyRuntime(title) {
     script.dataset.reactRuntime = 'true'
     document.body.appendChild(script)
     const removeFormHandlers = setupForms()
-    const removeScrollProgress = setupScrollProgress()
 
     return () => {
       script.remove()
       removeFormHandlers()
-      removeScrollProgress()
     }
   }, [title])
 }
