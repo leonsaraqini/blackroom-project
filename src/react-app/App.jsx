@@ -1,6 +1,7 @@
 import ContactPage from './pages/ContactPage.jsx'
 import DuravoPage from './pages/DuravoPage.jsx'
 import HomePage from './pages/HomePage.jsx'
+import OrderSuccessPage from './pages/OrderSuccessPage.jsx'
 import PekonPage from './pages/PekonPage.jsx'
 import PerlastonePage from './pages/PerlastonePage.jsx'
 import PortfolioPage from './pages/PortfolioPage.jsx'
@@ -20,6 +21,7 @@ const routes = {
   '/contact': ContactPage,
   '/shop': ShopPage,
   '/shop-test': ShopTestPage,
+  '/order-success': OrderSuccessPage,
   '/perlastone': PerlastonePage,
   '/duravo': DuravoPage,
   '/troko': TrokoPage,

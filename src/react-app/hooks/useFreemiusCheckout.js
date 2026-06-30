@@ -32,7 +32,7 @@ async function getSandboxOptions() {
   return response.json()
 }
 
-export default function useFreemiusCheckout() {
+export default function useFreemiusCheckout({ sandboxMode = false } = {}) {
   useEffect(() => {
     const handleCheckoutClick = async (event) => {
       const trigger = event.target.closest('[data-freemius-checkout]')
@@ -43,7 +43,6 @@ export default function useFreemiusCheckout() {
       try {
         await loadFreemiusCheckout()
 
-        const sandbox = await getSandboxOptions()
         const licenses = document.getElementById('freemius-test-licenses')?.value || '1'
         const handler = new window.FS.Checkout({
           product_id: trigger.dataset.freemiusProductId,
@@ -52,28 +51,25 @@ export default function useFreemiusCheckout() {
           image: trigger.dataset.freemiusImage || `${window.location.origin}/img/blackroom/favicon.png`,
         })
 
-        handler.open({
-          sandbox,
+        const checkoutOptions = {
           name: trigger.dataset.freemiusName || 'Blackroom Plugin',
           licenses,
-          purchaseCompleted: (response) => {
-            console.log('Freemius purchase completed:', response)
-            console.log('User email:', response?.user?.email)
-            console.log('License key:', response?.license?.key)
+          success: () => {
+            window.location.assign('/order-success')
           },
-          success: (response) => {
-            console.log('Freemius checkout closed after successful purchase:', response)
-            console.log('User email:', response?.user?.email)
-            console.log('License key:', response?.license?.key)
-          },
-        })
+        }
+
+        if (sandboxMode) checkoutOptions.sandbox = await getSandboxOptions()
+        handler.open(checkoutOptions)
       } catch (error) {
         console.error(error)
-        alert('Freemius sandbox checkout is not ready yet. Add the /api/freemius/sandbox backend endpoint first.')
+        alert(sandboxMode
+          ? 'Freemius sandbox checkout is unavailable. Please try again shortly.'
+          : 'Checkout is unavailable. Please try again shortly.')
       }
     }
 
     document.addEventListener('click', handleCheckoutClick)
     return () => document.removeEventListener('click', handleCheckoutClick)
-  }, [])
+  }, [sandboxMode])
 }

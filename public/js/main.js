@@ -382,18 +382,8 @@ $(function () {
         $(this).toggleClass('mil-active');
         $(this).next().toggleClass('mil-active');
     });
-    /***************************
-
-    progressbar
-
-    ***************************/
-    gsap.to('.mil-progress', {
-        height: '100%',
-        ease: 'sine',
-        scrollTrigger: {
-            scrub: 0.3
-        }
-    });
+    // Scroll progress is managed by the React runtime so it remains accurate
+    // when late-loading images, fonts, or deployed page changes alter height.
     /***************************
 
     scroll animations
