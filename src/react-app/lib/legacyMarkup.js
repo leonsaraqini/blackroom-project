@@ -66,9 +66,15 @@ export function getPageDefinition(source) {
   const content = []
   let banner = null
   let callToAction = null
+  let footer = ''
 
   for (const node of main?.children || []) {
-    if (node.matches('footer, .mil-hidden-elements')) continue
+    if (node.matches('footer')) {
+      footer = node.outerHTML
+      continue
+    }
+
+    if (node.matches('.mil-hidden-elements')) continue
 
     const bannerDefinition = getBannerDefinition(node)
     if (bannerDefinition) {
@@ -91,6 +97,7 @@ export function getPageDefinition(source) {
     banner,
     callToAction,
     content: moderniseLinks(content.join('')),
+    footer: moderniseLinks(footer),
   }
 }
 

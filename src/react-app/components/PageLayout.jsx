@@ -7,20 +7,23 @@ import LegacyMarkup from './LegacyMarkup.jsx'
 import SiteChrome from './SiteChrome.jsx'
 import SiteFooter from './SiteFooter.jsx'
 
-export default function PageLayout({ source, pathname }) {
+export default function PageLayout({ source, pathname, useSourceFooter = false }) {
   const page = useMemo(() => getPageDefinition(source), [source])
+  const showSiteChrome = !/^\/kairos(?:\/|$)/.test(pathname)
 
   return (
     <>
       <LegacyMarkup html={page.styles} />
       <div className="mil-wrapper" id="top">
-        <SiteChrome pathname={pathname} />
+        {showSiteChrome && <SiteChrome pathname={pathname} />}
         <div className="mil-content">
           <div id="swupMain" className="mil-main-transition">
             <InnerBanner banner={page.banner} />
             <LegacyMarkup html={page.content} />
             <CallToAction callToAction={page.callToAction} />
-            <SiteFooter />
+            {useSourceFooter && page.footer
+              ? <LegacyMarkup html={page.footer} />
+              : <SiteFooter />}
             <HiddenElements />
           </div>
         </div>
