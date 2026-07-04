@@ -41,6 +41,7 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
 .brm-footer-layout { display:grid; grid-template-columns:minmax(280px,.8fr) minmax(520px,1.2fr); gap:56px; align-items:center; }
 .brm-footer-info { text-align:left; }
 .brm-footer-payments { min-width:0; text-align:right; }
+.brm-security-badge { display:block; width:100%; max-width:300px; height:auto; margin-left:auto; }
 .brm-footer-heading { margin:0 0 20px; color:rgba(255,255,255,.78); font-size:16px; }
 .brm-footer-heading i { margin-right:8px; color:#ff6a1a; }
 .brm-footer-heading b { color:#fff; }
@@ -60,6 +61,7 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
     .brm-footer-layout { grid-template-columns:1fr; gap:36px; }
     .brm-footer-info, .brm-footer-payments { text-align:center; }
     .brm-footer-trust { justify-content:center; }
+    .brm-security-badge { margin:0 auto; }
 }
 /* card-brand marks inside chips */
 .brm-trust-chip svg.brm-mc { width:27px; height:17px; display:block; flex-shrink:0; }
@@ -168,7 +170,6 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
 .brm-values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 .brm-value { padding:42px 34px; border-radius:18px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);
     transition:.4s cubic-bezier(0,0,.36,1); }
-.brm-value:hover { transform:translateY(-6px); border-color:rgba(255,152,0,.4); }
 .brm-value-ic { width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center;
     background:rgba(255,152,0,.12); color:var(--acc); font-size:22px; margin-bottom:24px; }
 .brm-value h3 { font-size:21px; color:#fff; font-weight:600; margin:0 0 12px; }
