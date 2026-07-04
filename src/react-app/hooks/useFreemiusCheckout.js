@@ -48,7 +48,6 @@ export default function useFreemiusCheckout({ sandboxMode = false } = {}) {
           product_id: trigger.dataset.freemiusProductId,
           plan_id: trigger.dataset.freemiusPlanId,
           public_key: trigger.dataset.freemiusPublicKey,
-          image: trigger.dataset.freemiusImage || `${window.location.origin}/img/blackroom/favicon.png`,
         })
 
         const checkoutOptions = {
