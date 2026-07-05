@@ -162,7 +162,7 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
     letter-spacing:2px; text-transform:uppercase; color:#fff; }
 .brm-learn i { transition:.3s; }
 .brm-showcase:hover .brm-learn i { transform:translateX(6px); }
-.brm-showcase.brm-feature-band { min-height:88vh; }
+.brm-showcase.brm-feature-band { min-height:100vh; }
 .brm-showcase.brm-feature-band h2 { font-size:72px; }
 
 /* ---------- value props ---------- */
