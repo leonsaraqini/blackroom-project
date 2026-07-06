@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" type="image/png" href="/img/blackroom/shop/express-wordmark.png" />
+    <title>Kairos Express — Animated</title>
+
+    <style>
+        .brm-express-animated { overflow:clip; }
+        .brm-express-animated .brm-back-link,
+        .brm-express-animated .brm-phero-logo,
+        .brm-express-animated .brm-phero-badge,
+        .brm-express-animated .brm-phero h1,
+        .brm-express-animated .brm-phero-tag,
+        .brm-express-animated .brm-phero-actions > * { opacity:0; visibility:hidden; }
+        .brm-express-animated .brm-back-link { transform:translateX(-18px); }
+        .brm-express-animated .brm-phero-logo { transform:translateY(28px) scale(.92); }
+        .brm-express-animated .brm-phero-badge { transform:translateY(18px); }
+        .brm-express-animated .brm-phero h1 { transform:translateY(42px); }
+        .brm-express-animated .brm-phero-tag,
+        .brm-express-animated .brm-phero-actions > * { transform:translateY(24px); }
+        .brm-express-animated .brm-phero-media,
+        .brm-express-animated .brm-reel,
+        .brm-express-animated .brm-feature-img,
+        .brm-express-animated .brm-feature-text,
+        .brm-express-animated .brm-hl-card,
+        .brm-express-animated .brm-price-card { will-change:transform, opacity; }
+        .brm-express-animated .brm-feature-img { overflow:hidden; }
+        .brm-express-animated .brm-feature-img video { transition:transform .65s cubic-bezier(.2,.8,.2,1); }
+        .brm-express-animated .brm-feature-img:hover video { transform:scale(1.025); }
+        .brm-express-animated .brm-hl-card,
+        .brm-express-animated .brm-price-card { transition:border-color .3s ease, box-shadow .3s ease; }
+        .brm-express-animated .brm-hl-card:hover,
+        .brm-express-animated .brm-price-card:hover { border-color:rgba(255,106,26,.48); box-shadow:0 18px 55px rgba(0,0,0,.28); }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-price-card {
+            --pricing-pointer-x:50%;
+            --pricing-pointer-y:50%;
+            --pricing-spot-opacity:0;
+            isolation:isolate;
+        }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-price-card > * { position:relative; z-index:2; }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-price-card::after {
+            content:"";
+            position:absolute;
+            inset:0;
+            z-index:1;
+            padding:1.5px;
+            border-radius:inherit;
+            pointer-events:none;
+            opacity:var(--pricing-spot-opacity);
+            background:radial-gradient(190px circle at var(--pricing-pointer-x) var(--pricing-pointer-y), rgba(255,106,26,1), rgba(255,61,0,.55) 35%, transparent 72%);
+            -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+            -webkit-mask-composite:xor;
+            mask-composite:exclude;
+            transition:opacity .22s ease;
+        }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-accent::before {
+            content:"";
+            position:absolute;
+            inset:0;
+            z-index:0;
+            pointer-events:none;
+            opacity:calc(var(--pricing-spot-opacity) * .95);
+            background:radial-gradient(360px circle at var(--pricing-pointer-x) var(--pricing-pointer-y), rgba(255,106,26,.42), rgba(255,61,0,.13) 42%, transparent 72%);
+            transition:opacity .22s ease;
+        }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-accent { box-shadow:0 0 70px -30px var(--acc), 0 24px 80px -48px rgba(255,106,26,calc(var(--pricing-spot-opacity) * .9)); }
+        .brm-express-animated .brm-faq-item p { overflow:hidden; }
+        .brm-express-animated .brm-faq-item summary i { transition:transform .42s cubic-bezier(.2,.8,.2,1), color .3s ease; }
+        .brm-express-animated .brm-faq-item[open] summary i { transform:rotate(45deg) scale(1.08); }
+        @media (prefers-reduced-motion:reduce) {
+            .brm-express-animated *, .brm-express-animated *::before, .brm-express-animated *::after { scroll-behavior:auto !important; transition-duration:.01ms !important; }
+        }
+    </style>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KQNQCVRN');</script>
+<!-- End Google Tag Manager -->
+
+</head>
+
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQNQCVRN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div class="mil-wrapper" id="top">
+
+        <div class="mil-ball">
+            <span class="mil-icon-1">
+                <svg viewBox="0 0 128 128">
+                    <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2	c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2	L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9	z" />
+                </svg>
+            </span>
+            <div class="mil-more-text">More</div>
+            <div class="mil-choose-text">Сhoose</div>
+        </div>
+
+        <div class="mil-preloader">
+            <div class="mil-preloader-animation">
+                <div class="mil-pos-abs mil-animation-1">
+                    <p class="mil-h3 mil-muted mil-thin">Shaping</p>
+                    <p class="mil-h3 mil-muted">Tomorrow,</p>
+                    <p class="mil-h3 mil-muted mil-thin">Together</p>
+                </div>
+                <div class="mil-pos-abs mil-animation-2">
+                    <div class="mil-reveal-frame">
+                        <p class="mil-reveal-box"></p>
+                        <p class="mil-h3 mil-muted mil-thin">Blackroom Production</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mil-progress-track">
+            <div class="mil-progress"></div>
+        </div>
+
+        <!-- menu -->
+       <div class="mil-menu-frame">
+            <div class="mil-frame-top">
+                <a href="index.html" class="mil-logo">Blackroom</a>
+                <div class="mil-menu-btn"><span></span></div>
+            </div>
+            <div class="container">
+                <div class="mil-menu-content">
+                    <div class="row text-center">
+                        <div class="col-xl-12">
+                            <nav class="mil-main-menu" id="swupMenu">
+                                <ul>
+                                    <li class="mil-has-children"><a href="index.html">Home</a></li>
+                                    <li class="mil-has-children"><a href="portfolio.html">Portfolio</a></li>
+                                    <li class="mil-has-children"><a href="services.html">Services</a></li>
+                                    <li class="mil-has-children"><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mil-curtain"></div>
+
+        <!-- frame -->
+        <div class="mil-frame">
+           <div class="mil-frame-top">
+                <a href="index.html" class="mil-logo"><img src="/img/blackroom/nav-img.png"  alt="backroom logo"></a>
+                <div class="mil-menu-btn"><span></span></div>
+            </div>
+            <div class="mil-frame-bottom">
+                <div class="mil-current-page"></div>
+                <div class="mil-back-to-top">
+                    <a href="#top" class="mil-link mil-dark mil-arrow-place"><span>Back to top</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="mil-content">
+            <div id="swupMain" class="mil-main-transition">
+
+                <div class="mil-dark-bg brm brm-express-animated" style="--acc:#ff6a1a;--acc2:#ff3d00">
+                    <div class="mi-invert-fix brm-fix">
+
+                        <!-- product hero -->
+                        <section class="brm-phero">
+                            <video class="brm-phero-media" autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                <source src="/img/KairosExpress-HeroSection.mp4" type="video/mp4">
+                            </video>
+                            <a href="/kairos" class="brm-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Kairos</a>
+                            <div class="brm-phero-inner">
+                                <div class="brm-container">
+                                    <img src="/img/blackroom/shop/express-wordmark.png" alt="Kairos Express" class="brm-phero-logo">
+                                    <span class="brm-phero-badge"><svg class="brm-ae-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="m9.015 10.55-.572 1.826h1.903l-.583-1.826a21 21 0 0 1-.31-1.133l-.064-.253h-.022l-.114.465c-.074.31-.15.632-.238.921m6.282.396c-.836 0-1.188.759-1.243 1.309h2.354c.01-.495-.21-1.309-1.111-1.309"/><path fill="currentColor" fill-rule="evenodd" d="M6.77 3.082a47.5 47.5 0 0 1 10.46 0c1.899.212 3.43 1.707 3.653 3.613a45.7 45.7 0 0 1 0 10.61c-.223 1.906-1.754 3.401-3.652 3.614a47.5 47.5 0 0 1-10.461 0c-1.899-.213-3.43-1.708-3.653-3.613a45.7 45.7 0 0 1 0-10.611C3.34 4.789 4.871 3.294 6.77 3.082M11.248 15.5l-.67-2.101H8.222L7.585 15.5H6.188l2.376-7.414h1.727l2.41 7.414zm6.436-2.871c0 .253-.022.451-.044.572h-3.586c.033.968.792 1.386 1.65 1.386c.627 0 1.078-.088 1.485-.242l.198.935c-.462.187-1.1.341-1.87.341c-1.738 0-2.761-1.078-2.761-2.717c0-1.485.902-2.882 2.618-2.882c1.749 0 2.31 1.43 2.31 2.607" clip-rule="evenodd"/></svg> Adobe After Effects</span>
+                                    <h1>Kairos Express</h1>
+                                    <p class="brm-phero-tag">The expression library &amp; composer for After Effects. Save, search and inject your favorite expressions — with a visual control for every variable.</p>
+                                    <div class="brm-phero-actions">
+                                        <a href="#pricing" class="brm-btn brm-btn-primary">See pricing <i class="fa-solid fa-arrow-right"></i></a>
+                                        <span class="brm-phero-price">from <b>$2.49</b> / on annual plans</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- intro + reel -->
+                        <section class="brm-intro">
+                            <div class="brm-container">
+                                <!-- <span class="brm-eyebrow">Overview</span> -->
+                                <h2 >Stop digging for that one expression.</h2>
+                                <p>Kairos Express is a panel that lives inside After Effects. Save, tag and search your favorite expressions in plain language, then inject them into any selected property in one click — each with a visual preview so you tune amplitude, frequency and more with sliders instead of editing code.</p>
+                                <div class="brm-reel">
+                                    <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-reel-poster.png">
+                                        <source src="https://media.blackroomprod.com/KairosExpress_Hero.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- features -->
+                        <section class="brm-features">
+                            <div class="brm-container">
+
+                                <div class="brm-feature-row">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">Find it fast</span> -->
+                                        <h3>Search by what it does</h3>
+                                        <p>Type "shake", "loop forever" or "fade out" and the right expression surfaces — intent-aware, typo-tolerant, and fully local. An optional AI fallback (bring your own key) handles the unusual phrasings.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> Offline, intent-aware search</li>
+                                            <li><i class="fa-solid fa-check"></i> Search names, tags, categories &amp; descriptions</li>
+                                            <li><i class="fa-solid fa-check"></i> Optional Ask AI (your own API key)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosExpress_Featured.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <div class="brm-feature-row brm-reverse">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">See it before you use it</span> -->
+                                        <h3>Live previews &amp; visual controls</h3>
+                                        <p>Every expression has a tiny animated canvas that shows exactly what it does — bounce, wiggle, spin, fade — drawn with the same math and reacting in real time as you drag the sliders. No video assets, all live.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> Real-time animated previews</li>
+                                            <li><i class="fa-solid fa-check"></i> Sliders, dropdowns &amp; checkboxes per variable</li>
+                                            <li><i class="fa-solid fa-check"></i> Tune values without touching code</li>
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosExpress_LivePreviews.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <div class="brm-feature-row">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">One click, done</span> -->
+                                        <h3>Inject two ways — baked or AE controls</h3>
+                                        <p>Drop an expression into every selected property inside a tidy Undo group. Choose <b>Baked</b> values written straight into the code, or <b>AE Controls</b> that add Slider/Angle/Checkbox effects so you keep tweaking live — like pro rigs.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> One-click inject to all selected properties</li>
+                                            <li><i class="fa-solid fa-check"></i> Baked or live AE-Controls mode</li>
+                                            <li><i class="fa-solid fa-check"></i> Smooth in / out easing at the layer's in &amp; out points</li>
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosExpress_Inject.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <div class="brm-feature-row brm-reverse">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">Make it yours</span> -->
+                                        <h3>Your own growing library</h3>
+                                        <p>Create, edit and duplicate your own expressions with a full parameter editor, organize everything with tags, categories and favorites.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> Create / edit / fork expressions</li>
+                                            <li><i class="fa-solid fa-check"></i> Tags, categories &amp; favorites</li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosExpress_Library.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                        <!-- under the hood -->
+                        <section class="brm-highlights">
+                            <div class="brm-container">
+                                <div class="brm-section-head">
+                                    <!-- <span class="brm-eyebrow">What's in the box</span> -->
+                                    <h2>150+ expressions, ready to go</h2>
+                                    <p>A curated library across 14 categories — Physics, Motion, Rigging, Loops, Opacity, Utility, Camera, 3D, Audio, Text, Data, Time, Shapes and Color. Every one verified to evaluate cleanly in After Effects.</p>
+                                </div>
+                                <div class="brm-highlights-grid">
+                                    <div class="brm-hl-card"><i class="fa-solid fa-layer-group"></i><h4>150+ expressions</h4><p>Across 14 categories, all validated.</p></div>
+                                    <div class="brm-hl-card"><i class="fa-solid fa-wifi"></i><h4>Local &amp; offline</h4><p>Search and library run on your machine.</p></div>
+                                    <div class="brm-hl-card"><i class="fa-solid fa-wand-magic-sparkles"></i><h4>Optional Ask AI</h4><p>Claude-powered fallback, your own key.</p></div>
+                                    <div class="brm-hl-card"><i class="fa-solid fa-moon"></i><h4>Dark UI</h4><p>Tuned to sit right inside After Effects.</p></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- requirements -->
+                        <section class="brm-highlights" >
+                            <div class="brm-container">
+                                <div class="brm-section-head">
+                                    <!-- <span class="brm-eyebrow">Requirements</span> -->
+                                    <h2>What you'll need</h2>
+                                </div>
+                                <div class="brm-highlights-grid brm-requirements-grid">
+                                    <div class="brm-hl-card"><svg class="brm-ae-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="m9.015 10.55-.572 1.826h1.903l-.583-1.826a21 21 0 0 1-.31-1.133l-.064-.253h-.022l-.114.465c-.074.31-.15.632-.238.921m6.282.396c-.836 0-1.188.759-1.243 1.309h2.354c.01-.495-.21-1.309-1.111-1.309"/><path fill="currentColor" fill-rule="evenodd" d="M6.77 3.082a47.5 47.5 0 0 1 10.46 0c1.899.212 3.43 1.707 3.653 3.613a45.7 45.7 0 0 1 0 10.61c-.223 1.906-1.754 3.401-3.652 3.614a47.5 47.5 0 0 1-10.461 0c-1.899-.213-3.43-1.708-3.653-3.613a45.7 45.7 0 0 1 0-10.611C3.34 4.789 4.871 3.294 6.77 3.082M11.248 15.5l-.67-2.101H8.222L7.585 15.5H6.188l2.376-7.414h1.727l2.41 7.414zm6.436-2.871c0 .253-.022.451-.044.572h-3.586c.033.968.792 1.386 1.65 1.386c.627 0 1.078-.088 1.485-.242l.198.935c-.462.187-1.1.341-1.87.341c-1.738 0-2.761-1.078-2.761-2.717c0-1.485.902-2.882 2.618-2.882c1.749 0 2.31 1.43 2.31 2.607" clip-rule="evenodd"/></svg><h4>After Effects</h4><p>CC 2018 or newer (Windows or macOS).</p></div>
+                                    <!-- <div class="brm-hl-card"><i class="fa-solid fa-puzzle-piece"></i><h4>CEP panel</h4><p>Opens under Window ▸ Extensions.</p></div> -->
+                                    <div class="brm-hl-card"><i class="fa-solid fa-box-open"></i><h4>Simple install</h4><p>You get a licensed installer on your email ready to download.</p></div>
+                                    <!-- <div class="brm-hl-card"><i class="fa-solid fa-headset"></i><h4>Setup help</h4><p>We'll get you up and running.</p></div> -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- pricing -->
+                        <section class="brm-pricing">
+                            <div class="brm-container">
+                                <div class="brm-section-head" id="pricing">
+                                    <!-- <span class="brm-eyebrow">Pricing</span> -->
+                                    <h2>Choose your plan</h2>
+                                    <p>Simple monthly pricing — cancel anytime. Every plan includes the offline search, live previews and one-click inject.</p>
+                                </div>
+                                <div class="brm-pricing-grid brm-three">
+
+                                    <div class="brm-price-card brm-card-first">
+                                        <span class="brm-eyebrow">Standard</span>
+                                        <div class="brm-amt">$2.99 <small>/month</small></div>
+                                        <p>Solo editors &amp; hobbyists.</p>
+                                        <ul class="brm-price-list">
+                                            <li><i class="fa-solid fa-check"></i> Core library — 61 expressions, 6 categories</li>
+                                            <li><i class="fa-solid fa-check"></i> Offline search &amp; live previews</li>
+                                            <li><i class="fa-solid fa-check"></i> Baked + AE-Controls inject</li>
+                                            <li><i class="fa-solid fa-check"></i> Up to 10 custom expressions</li>
+                                            <li><i class="fa-solid fa-check"></i> 1 user · 2 machines · updates included</li>
+                                        </ul>
+                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Express — Standard Expression" data-freemius-product-id="32553" data-freemius-plan-id="53399" data-freemius-public-key="pk_2f0033ac00aee7723deaebd05f584">Get Standard</a>
+                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-trial="free" data-freemius-name="Kairos Express — Standard Expression" data-freemius-product-id="32553" data-freemius-plan-id="53399" data-freemius-public-key="pk_2f0033ac00aee7723deaebd05f584">Start 4-Day Free Trial</a>
+                                        <p class="brm-trial-note">Try all Standard features free for 4 days. No payment required.</p>
+                                    </div>
+
+                                    <div class="brm-price-card brm-accent">
+                                        <span class="brm-eyebrow">Premium · most popular</span>
+                                        <div class="brm-amt">$4.99 <small>/month</small></div>
+                                        <p>Pro motion designers &amp; freelancers.</p>
+                                        <ul class="brm-price-list">
+                                            <li><i class="fa-solid fa-check"></i> Full library — 150+ expressions, all 14 categories</li>
+                                            <li><i class="fa-solid fa-check"></i> Unlimited custom expressions + import/export</li>
+                                            <li><i class="fa-solid fa-check"></i> Ask AI search + 200 credits/mo</li>
+                                            <li><i class="fa-solid fa-check"></i> Cloud sync across your machines</li>
+                                            <li><i class="fa-solid fa-check"></i> Ongoing updates · priority support</li>
+                                        </ul>
+                                        <a href="#" class="brm-btn brm-btn-primary" data-freemius-checkout data-freemius-name="Kairos Express — Premium Expression" data-freemius-product-id="32553" data-freemius-plan-id="53400" data-freemius-public-key="pk_2f0033ac00aee7723deaebd05f584">Get Premium</a>
+                                        <a href="#" class="brm-btn brm-btn-primary" data-freemius-checkout data-freemius-trial="free" data-freemius-name="Kairos Express — Premium Expression" data-freemius-product-id="32553" data-freemius-plan-id="53400" data-freemius-public-key="pk_2f0033ac00aee7723deaebd05f584">Start 7-Day Free Trial</a>
+                                        <p class="brm-trial-note">Try all Premium features free for 7 days. No payment required.</p>
+                                    </div>
+
+                                    <div class="brm-price-card brm-card-third">
+                                        <span class="brm-eyebrow">Business</span>
+                                        <div class="brm-amt">$29.99 <small>/month</small></div>
+                                        <p>Studios &amp; teams · 10 seats.</p>
+                                        <ul class="brm-price-list">
+                                            <li><i class="fa-solid fa-check"></i> Everything in Premium</li>
+                                            <li><i class="fa-solid fa-check"></i> 10 seats + central licensing &amp; deployment</li>
+                                            <li><i class="fa-solid fa-check"></i> Team shared library</li>
+                                            <li><i class="fa-solid fa-check"></i> Brand kit &amp; locked presets</li>
+                                            <li><i class="fa-solid fa-check"></i> 2,000 AI credits/mo · dedicated support &amp; SLA</li>
+                                        </ul>
+                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Express — Business Expression" data-freemius-product-id="32553" data-freemius-plan-id="53401" data-freemius-public-key="pk_2f0033ac00aee7723deaebd05f584">Get Business</a>
+                                        <a href="/contact" class="brm-btn brm-btn-ghost">Contact Us</a>
+                                        <p class="brm-trial-note">Contact us to discuss a Business trial for your team.</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- faq -->
+                        <section class="brm-faq">
+                            <div class="brm-container">
+                                <div class="brm-section-head">
+                                    <!-- <span class="brm-eyebrow">FAQ</span> -->
+                                    <h2>Good to know</h2>
+                                </div>
+                                <div class="brm-faq-list">
+                                    <details class="brm-faq-item">
+                                        <summary>Which app is Kairos Express for? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>It's a panel for Adobe After Effects (CC 2018 or newer). After installing, open it from Window ▸ Extensions ▸ Kairos Express and it works on whatever properties you select in your comp.</p>
+                                    </details>
+                                    <details class="brm-faq-item">
+                                        <summary>Does it work offline? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>Yes. The search engine and your library are fully local and offline. The optional "Ask AI" fallback is off by default and only sends your query to Anthropic if you enable it with your own API key.</p>
+                                    </details>
+                                    <details class="brm-faq-item">
+                                        <summary>How does billing work? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>Kairos Express is a simple monthly subscription — plans start at $2.99/month. You keep every feature and all updates while your plan is active, and you can cancel anytime.</p>
+                                    </details>
+                                    <details class="brm-faq-item">
+                                        <summary>How is it delivered and installed? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>You’ll receive the downloader by email—no manual file wrangling. We’re happy to help if you experience any issues with the installation.</p>
+                                    </details>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <footer class="mil-dark-bg">
+                    <div class="mi-invert-fix">
+                        <div class="container" style="padding:64px 0;">
+                            <div class="brm-footer-layout">
+                                <div class="brm-footer-info">
+                                    <p class="brm-footer-note"><i class="fa-solid fa-shield-halved"></i> PCI-compliant checkout with SSL encryption. Available payment methods may vary by region.</p>
+                                    <p class="brm-footer-contact">For any help, write to us at <a href="mailto:contact@blackroomprod.com">contact@blackroomprod.com</a></p>
+                                </div>
+                                <div class="brm-footer-payments">
+                                    <img class="brm-security-badge" src="/img/blackroom/shop/security-badge-dark-black-bkg.svg" alt="Secure payments powered by Freemius. Visa, Mastercard, American Express, iDEAL, and PayPal accepted.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <div class="mil-hidden-elements">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="mil-arrow">
+                        <path d="M 14 5.3417969 C 13.744125 5.3417969 13.487969 5.4412187 13.292969 5.6367188 L 13.207031 5.7226562 C 12.816031 6.1136563 12.816031 6.7467188 13.207031 7.1367188 L 17.070312 11 L 4 11 C 3.448 11 3 11.448 3 12 C 3 12.552 3.448 13 4 13 L 17.070312 13 L 13.207031 16.863281 C 12.816031 17.254281 12.816031 17.887344 13.207031 18.277344 L 13.292969 18.363281 C 13.683969 18.754281 14.317031 18.754281 14.707031 18.363281 L 20.363281 12.707031 C 20.754281 12.316031 20.754281 11.682969 20.363281 11.292969 L 14.707031 5.6367188 C 14.511531 5.4412187 14.255875 5.3417969 14 5.3417969 z" />
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/plugins/jquery.min.js"></script>
+    <script src="js/plugins/swup.min.js"></script>
+    <script src="js/plugins/swiper.min.js"></script>
+    <script src="js/plugins/fancybox.min.js"></script>
+    <script src="js/plugins/gsap.min.js"></script>
+    <script src="js/plugins/smooth-scroll.js"></script>
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <script src="js/plugins/ScrollTo.min.js"></script>
+    <script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+(() => {
+  if (!window._emailjsInited && typeof emailjs !== "undefined") {
+    emailjs.init({ publicKey: "UyDn_9uga43SkKTFK" });
+    window._emailjsInited = true;
+  }
+  const SERVICE_ID            = "service_dbj7rap";
+  const SUBSCRIBE_TEMPLATE_ID = "template_saa1vp5";
+  const ensureLive = (id) => {
+    const el = document.getElementById(id);
+    if (el && !el.getAttribute("aria-live")) el.setAttribute("aria-live", "polite");
+    return el;
+  };
+  const disableBtn = (btn, label = "Sending…") => {
+    if (!btn) return () => {};
+    const prev = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<span>${label}</span>`;
+    return () => { btn.disabled = false; btn.innerHTML = prev; };
+  };
+  const sendEmail = (tpl, data) => {
+    if (typeof emailjs === "undefined") return Promise.reject(new Error("EmailJS not loaded"));
+    return emailjs.send(SERVICE_ID, tpl, data);
+  };
+  document.addEventListener("submit", async (e) => {
+    const form = e.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
+    const hp = form.querySelector('input[name="_gotcha"]');
+    if (hp && hp.value) { e.preventDefault(); return; }
+    if (form.matches("#subscribeForm")) {
+      e.preventDefault();
+      const email = form.querySelector("#subscribeEmail")?.value.trim();
+      const resp  = ensureLive("subscribeResponse");
+      const btn   = form.querySelector('button[type="submit"]');
+      const restore = disableBtn(btn);
+      resp && (resp.textContent = "");
+      try {
+        await sendEmail(SUBSCRIBE_TEMPLATE_ID, { email, reply_to: email, source_url: location.href });
+        resp && (resp.textContent = "✅ Email sent! We will contact you as soon as possible.");
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        resp && (resp.innerHTML = "❌ Couldn't subscribe right now. Please try again later or email us at <a href='mailto:contact@blackroomprod.com'>contact@blackroomprod.com</a>.");
+      } finally { restore(); }
+      return;
+    }
+  }, true);
+})();
+</script>
+
+</body>
+
+</html>

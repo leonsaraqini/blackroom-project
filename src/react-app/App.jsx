@@ -7,7 +7,7 @@ import PekonPage from './pages/PekonPage.jsx'
 import PerlastonePage from './pages/PerlastonePage.jsx'
 import PortfolioPage from './pages/PortfolioPage.jsx'
 import PositanoPage from './pages/PositanoPage.jsx'
-import ProductExpressPage from './pages/ProductExpressPage.jsx'
+import ProductExpressAnimatedPage from './pages/ProductExpressAnimatedPage.jsx'
 import RavePage from './pages/RavePage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
 import ShopPage from './pages/ShopPage.jsx'
@@ -32,7 +32,9 @@ const routes = {
   '/positano': PositanoPage,
   '/wiegeparadies': WiegeparadiesPage,
   '/kairos': KairosPage,
-  '/kairos/product-express': ProductExpressPage,
+  '/product-express': ProductExpressAnimatedPage,
+  '/kairos/product-express': ProductExpressAnimatedPage,
+  '/kairos/product-express-animated': ProductExpressAnimatedPage,
 }
 
 function normalisePath(pathname) {

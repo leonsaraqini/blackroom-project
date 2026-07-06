@@ -295,7 +295,7 @@ margin-bottom: 26px; }
 .brm-pricing-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:24px; align-items:stretch; }
 .brm-price-card { position:relative; padding:50px 44px; border-radius:22px; display:flex; flex-direction:column;
     background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.1); overflow:hidden; }
-.brm-price-card.brm-accent { background:linear-gradient(160deg, rgba(255,152,0,.14), rgba(155,92,255,.08)); border-color:rgba(255,152,0,.4); box-shadow:0 0px 70px -30px var(--acc); }
+.brm-price-card.brm-accent { background:linear-gradient(160deg, rgba(255,152,0,.14), rgba(155,92,255,.08)); border-color:none ; box-shadow:0 0px 70px -30px var(--acc); }
 .brm-price-card .brm-eyebrow { margin-bottom:14px; }
 .brm-price-card h3 { font-size:28px; color:#fff; font-weight:700; margin:0 0 10px; }
 .brm-price-card .brm-amt { font-size:54px; color:#fff; font-weight:700; line-height:1; margin:14px 0 6px; }
