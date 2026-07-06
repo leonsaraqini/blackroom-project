@@ -16,6 +16,7 @@ export default function useProductExpressScrollAnimations() {
       media.add(
         {
           desktop: '(min-width: 769px)',
+          mobile: '(max-width: 768px)',
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         ({ conditions }) => {
@@ -40,8 +41,8 @@ export default function useProductExpressScrollAnimations() {
             .to('.brm-phero-price', { autoAlpha: 1, y: 0, duration: 0.55 }, 1.34)
 
           gsap.to('.brm-phero-media', {
-            yPercent: 12,
-            scale: 1.08,
+            yPercent: desktop ? 12 : 6,
+            scale: desktop ? 1.08 : 1.04,
             ease: 'none',
             scrollTrigger: {
               trigger: '.brm-phero',
@@ -53,18 +54,18 @@ export default function useProductExpressScrollAnimations() {
 
           gsap.from('.brm-intro > .brm-container > h2, .brm-intro > .brm-container > p', {
             autoAlpha: 0,
-            y: 44,
-            stagger: 0.12,
-            duration: 0.8,
+            y: desktop ? 44 : 28,
+            stagger: desktop ? 0.12 : 0.08,
+            duration: desktop ? 0.8 : 0.62,
             ease: 'power3.out',
             scrollTrigger: { trigger: '.brm-intro', start: 'top 78%', once: true },
           })
 
           gsap.from('.brm-reel', {
             autoAlpha: 0,
-            y: 50,
-            scale: 0.94,
-            duration: 1,
+            y: desktop ? 50 : 28,
+            scale: desktop ? 0.94 : 0.97,
+            duration: desktop ? 1 : 0.7,
             ease: 'power3.out',
             scrollTrigger: { trigger: '.brm-reel', start: 'top 84%', once: true },
           })
@@ -79,8 +80,8 @@ export default function useProductExpressScrollAnimations() {
             })
 
             timeline
-              .from(text, { autoAlpha: 0, x: desktop ? (reversed ? 70 : -70) : 0, y: desktop ? 0 : 36, duration: 0.9 })
-              .from(mediaElement, { autoAlpha: 0, x: desktop ? (reversed ? -70 : 70) : 0, y: desktop ? 0 : 36, scale: 0.95, duration: 1 }, '-=0.72')
+              .from(text, { autoAlpha: 0, x: desktop ? (reversed ? 70 : -70) : 0, y: desktop ? 0 : 28, duration: desktop ? 0.9 : 0.65 })
+              .from(mediaElement, { autoAlpha: 0, x: desktop ? (reversed ? -70 : 70) : 0, y: desktop ? 0 : 28, scale: desktop ? 0.95 : 0.98, duration: desktop ? 1 : 0.72 }, desktop ? '-=0.72' : '-=0.4')
               .from(row.querySelectorAll('.brm-feature-list li'), { autoAlpha: 0, y: 14, stagger: 0.08, duration: 0.42 }, '-=0.48')
           })
 

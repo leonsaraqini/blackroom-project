@@ -63,6 +63,20 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
     .brm-footer-trust { justify-content:center; }
     .brm-security-badge { margin:0 auto; }
 }
+@media (max-width:680px) {
+    .brm-footer-note {
+        display:flex;
+        align-items:flex-start;
+        justify-content:center;
+        gap:9px;
+        max-width:340px;
+        margin:0 auto 18px;
+        padding:0 18px;
+        text-align:left;
+        line-height:1.55;
+    }
+    .brm-footer-note i { flex:0 0 auto; margin:3px 0 0; }
+}
 /* card-brand marks inside chips */
 .brm-trust-chip svg.brm-mc { width:27px; height:17px; display:block; flex-shrink:0; }
 .brm-trust-chip .brm-visa { font-style:italic; font-weight:800; font-size:13.5px; letter-spacing:.5px;
