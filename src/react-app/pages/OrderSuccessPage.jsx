@@ -45,7 +45,7 @@ export default function OrderSuccessPage() {
                     </h1>
                     <p className="order-success-copy">
                       {isTrial
-                        ? trialEnd ? `Trial active until ${trialEnd}.` : 'Your free trial is active.'
+                        ? `${trialEnd ? `Trial active until ${trialEnd}.` : 'Your free trial is active.'} Please check your email for the installer.`
                         : 'Thank you for your purchase. Freemius has sent your license key and download links to your email address.'}
                     </p>
 
