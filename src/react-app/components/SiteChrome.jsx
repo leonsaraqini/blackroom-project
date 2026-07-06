@@ -2,6 +2,7 @@ const navigation = [
   ['/', 'Home'],
   ['/portfolio', 'Portfolio'],
   ['/services', 'Services'],
+  ['/kairos', 'Plugins'],
   ['/contact', 'Contact'],
 ]
 

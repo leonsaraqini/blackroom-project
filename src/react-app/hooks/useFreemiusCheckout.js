@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 const CHECKOUT_SCRIPT_ID = 'freemius-checkout-script'
 const CHECKOUT_SCRIPT_SRC = 'https://checkout.freemius.com/js/v1/'
 const SANDBOX_ENDPOINT = '/api/freemius/sandbox'
+const CHECKOUT_RESULT_KEY = 'freemiusCheckoutResult'
 
 function loadFreemiusCheckout() {
   if (window.FS?.Checkout) return Promise.resolve()
@@ -41,30 +42,55 @@ export default function useFreemiusCheckout({ sandboxMode = false } = {}) {
       event.preventDefault()
 
       try {
+        const { freemiusProductId, freemiusPlanId, freemiusPublicKey } = trigger.dataset
+        if (!freemiusProductId || !freemiusPlanId || !freemiusPublicKey) {
+          throw new Error('Invalid Freemius product or plan configuration.')
+        }
+
         await loadFreemiusCheckout()
+
+        if (!window.FS?.Checkout) {
+          throw new Error('Freemius checkout could not be opened.')
+        }
 
         const licenses = document.getElementById('freemius-test-licenses')?.value || '1'
         const handler = new window.FS.Checkout({
-          product_id: trigger.dataset.freemiusProductId,
-          plan_id: trigger.dataset.freemiusPlanId,
-          public_key: trigger.dataset.freemiusPublicKey,
+          product_id: freemiusProductId,
+          plan_id: freemiusPlanId,
+          public_key: freemiusPublicKey,
         })
+
+        const isFreeTrial = trigger.dataset.freemiusTrial === 'free'
 
         const checkoutOptions = {
           name: trigger.dataset.freemiusName || 'Blackroom Plugin',
           licenses,
-          success: () => {
-            window.location.assign('/order-success')
+          success: (response) => {
+            const trialEndsAt = response?.trial?.trial_ends_at || null
+            try {
+              sessionStorage.setItem(CHECKOUT_RESULT_KEY, JSON.stringify({
+                type: response?.trial ? 'trial' : 'purchase',
+                trialEndsAt,
+              }))
+            } finally {
+              window.location.assign('/order-success')
+            }
           },
         }
 
+        // Freemius determines the duration and payment requirement from the selected plan.
+        // `free` explicitly requests its no-payment-method trial checkout.
+        if (isFreeTrial) checkoutOptions.trial = 'free'
         if (sandboxMode) checkoutOptions.sandbox = await getSandboxOptions()
-        handler.open(checkoutOptions)
+        await handler.open(checkoutOptions)
       } catch (error) {
         console.error(error)
-        alert(sandboxMode
-          ? 'Freemius sandbox checkout is unavailable. Please try again shortly.'
-          : 'Checkout is unavailable. Please try again shortly.')
+        const message = error instanceof Error ? error.message : ''
+        alert(message.startsWith('Invalid Freemius')
+          ? 'Invalid product or plan ID. Please contact support.'
+          : sandboxMode
+            ? 'Freemius sandbox checkout could not be opened. Please try again shortly.'
+            : 'Freemius checkout could not be opened. Please try again shortly.')
       }
     }
 

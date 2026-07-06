@@ -306,6 +306,8 @@ margin-bottom: 26px; }
     padding:11px 0; border-bottom:1px solid rgba(255,255,255,.07); }
 .brm-price-list li i { color:var(--acc); font-size:13px; margin-top:4px; }
 .brm-price-card .brm-btn { width:100%; justify-content:center; }
+.brm-price-card .brm-btn + .brm-btn { margin-top:12px; }
+.brm-price-card p.brm-trial-note { min-height:48px; margin:10px 0 0; font-size:14px; line-height:1.55; }
 
 /* bundle: included-products grid + 3-col pricing */
 .brm-incl { padding:30px 0 90px; }
