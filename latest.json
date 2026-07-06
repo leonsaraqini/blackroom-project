@@ -1,0 +1,15 @@
+{
+  "product": "kairos-express",
+  "latestVersion": "1.0.1",
+  "platforms": {
+    "windows": {
+      "downloadUrl": "https://downloads.blackroomprod.com/kairos-express/1.0.1/KairosExpress-Windows.exe",
+      "fileName": "KairosExpress-Windows.exe"
+    }
+  },
+  "changelog": [
+    "Kairos Express Windows build 1.0.1 is now available."
+  ],
+  "releaseDate": "2026-07-06",
+  "forceUpdate": false
+}
