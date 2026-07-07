@@ -11,6 +11,45 @@ type Bindings = Env & {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
+// Release configuration: update these four fields when publishing a new build.
+const kairosExpressRelease = {
+	latestVersion: "1.0.2",
+	downloadUrl:
+		"https://downloads.blackroomprod.com/kairos-express/1.0.2/KairosExpress-Windows.exe",
+	changelog: [
+		"Kairos Express version 1.0.2 is now available.",
+		"Bug fixes and improvements.",
+	],
+	releaseDate: "2026-07-07",
+};
+
+const noCacheHeaders = {
+	"Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+	Pragma: "no-cache",
+	Expires: "0",
+	"Access-Control-Allow-Origin": "*",
+};
+
+app.get("/kairos-express/latest-version", (c) =>
+	c.json(
+		{
+			product: "kairos-express",
+			latestVersion: kairosExpressRelease.latestVersion,
+			platforms: {
+				windows: {
+					downloadUrl: kairosExpressRelease.downloadUrl,
+					fileName: "KairosExpress-Windows.exe",
+				},
+			},
+			changelog: kairosExpressRelease.changelog,
+			releaseDate: kairosExpressRelease.releaseDate,
+			forceUpdate: false,
+		},
+		200,
+		noCacheHeaders,
+	),
+);
+
 app.get("/api/freemius/sandbox", async (c) => {
 	const required = [
 		"FREEMIUS_PRODUCT_ID",
@@ -57,5 +96,7 @@ app.all("/admin", forwardAdmin);
 app.all("/admin/*", forwardAdmin);
 
 app.get("/api/", (c) => c.json({ name: "Cloudflare" }));
+
+app.notFound((c) => c.json({ error: "Not found" }, 404));
 
 export default app;
