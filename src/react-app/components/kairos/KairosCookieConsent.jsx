@@ -37,36 +37,32 @@ export default function KairosCookieConsent() {
       aria-hidden={!visible}
     >
       <div className="brm-cookie-modal">
-        <div className="brm-cookie-ic"><i className="fa-solid fa-cookie-bite" aria-hidden="true" /></div>
         <h3 id="brmCookieTitle">We value your privacy</h3>
-        <p>We use cookies to keep this site running smoothly, measure traffic and improve your experience. Choose which categories you allow — you can accept everything, or fine-tune it below.</p>
+        <p>We use essential cookies to keep this site running smoothly. You can also choose whether to allow analytics and marketing cookies below.</p>
         <div className="brm-cookie-cats">
-          <CookieCategory title="Essential" description="Required for the site to function — security, page navigation and remembering your consent choice." essential />
           <CookieCategory title="Analytics" description="Helps us understand how visitors use the site — page views, traffic sources — so we can improve it." checked={analytics} onChange={setAnalytics} />
           <CookieCategory title="Marketing" description="Used to measure campaigns and show you more relevant content across the web." checked={marketing} onChange={setMarketing} />
         </div>
         <div className="brm-cookie-actions">
-          <button type="button" className="brm-btn brm-btn-primary" onClick={() => save({ analytics: true, marketing: true })}>Accept all</button>
-          <button type="button" className="brm-btn brm-btn-ghost" onClick={() => save({ analytics, marketing })}>Save my choices</button>
-          <button type="button" className="brm-cookie-reject" onClick={() => save({ analytics: false, marketing: false })}>Only essential</button>
+          <button type="button" className="brm-btn brm-btn-primary" onClick={() => save({ analytics: false, marketing: false })}>Only Essential</button>
+          <button type="button" className="brm-btn brm-btn-primary" onClick={() => save({ analytics, marketing })}>Save my Choices</button>
         </div>
       </div>
     </div>
   )
 }
 
-function CookieCategory({ title, description, essential = false, checked, onChange }) {
+function CookieCategory({ title, description, checked, onChange }) {
   return (
     <div className="brm-cookie-cat">
       <div className="brm-cookie-cat-text">
-        <h4>{title} {essential && <span>Always on</span>}</h4>
+        <h4>{title}</h4>
         <p>{description}</p>
       </div>
       <label className="brm-switch">
         <input
           type="checkbox"
-          checked={essential || checked}
-          disabled={essential}
+          checked={checked}
           onChange={(event) => onChange?.(event.target.checked)}
           aria-label={`${title} cookies`}
         />

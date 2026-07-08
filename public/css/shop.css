@@ -89,7 +89,7 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
     opacity:0; pointer-events:none; transition:opacity .45s; }
 .brm-cookie-overlay.brm-show { opacity:1; pointer-events:auto; }
 .brm-cookie-modal { width:100%; max-width:560px; max-height:calc(100vh - 40px); overflow-y:auto;
-    background:#14110e; border:1px solid rgba(255,255,255,.13); border-radius:20px; padding:40px 38px;
+    background:#14110e; border-radius:20px; padding:40px 38px;
     box-shadow:0 40px 120px rgba(0,0,0,.7); transform:translateY(26px) scale(.97);
     transition:transform .5s cubic-bezier(0,0,.36,1); }
 .brm-cookie-overlay.brm-show .brm-cookie-modal { transform:translateY(0) scale(1); }
@@ -103,7 +103,6 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
     border-bottom:1px solid rgba(255,255,255,.08); }
 .brm-cookie-cat-text { flex:1; }
 .brm-cookie-cat-text h4 { font-size:15px; color:#fff; font-weight:600; margin:0 0 4px; display:flex; align-items:center; gap:8px; }
-.brm-cookie-cat-text h4 span { font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#ff6a1a; font-weight:700; }
 .brm-cookie-cat-text p { font-size:13px; color:rgba(255,255,255,.5); line-height:1.55; margin:0; }
 /* toggle switch */
 .brm-switch { position:relative; flex-shrink:0; width:46px; height:26px; margin-top:2px; }
@@ -114,18 +113,13 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
     border-radius:50%; background:#fff; transition:.3s cubic-bezier(0,0,.36,1); }
 .brm-switch input:checked + .brm-track { background:linear-gradient(135deg,#ff6a1a,#ff3d00); border-color:transparent; }
 .brm-switch input:checked + .brm-track:before { transform:translateX(20px); }
-.brm-switch input:disabled { cursor:not-allowed; }
-.brm-switch input:disabled + .brm-track { opacity:.55; }
 .brm-cookie-actions { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
 .brm-cookie-actions .brm-btn { padding:13px 26px; font-size:13.5px; }
-.brm-cookie-reject { margin-left:auto; font-size:13px; font-weight:600; letter-spacing:.3px;
-    color:rgba(255,255,255,.45); background:none; border:none; cursor:pointer; padding:8px 4px; transition:.3s; }
-.brm-cookie-reject:hover { color:#fff; }
+.brm-cookie-actions .brm-btn-primary:hover { color:#0a0a0a; border-color:transparent; box-shadow:none; }
 @media (max-width:560px) {
     .brm-cookie-modal { padding:30px 24px; }
     .brm-cookie-actions { flex-direction:column; align-items:stretch; }
     .brm-cookie-actions .brm-btn { justify-content:center; }
-    .brm-cookie-reject { margin:4px auto 0; }
 }
 
 /* ---------- shared bits ---------- */
