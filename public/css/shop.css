@@ -24,12 +24,12 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
 .brm-btn-primary { position:relative; isolation:isolate; overflow:hidden; background:transparent; color:var(--acc);
     border-color:transparent; box-shadow:inset 0 0 0 1px var(--acc); }
 .brm-btn-primary::before { content:""; position:absolute; inset:-1px; z-index:-1; border-radius:inherit;
-    background:linear-gradient(135deg, rgba(0,0,0,.20), rgba(0,0,0,.20)), linear-gradient(135deg,var(--acc),var(--acc2));
+    background:repeating-radial-gradient(var(--acc),var(--acc2));
     opacity:0; transition:opacity .35s cubic-bezier(0,0,.36,1); }
 .brm .brm-btn-primary:hover { color:#0a0a0a; border-color:transparent; box-shadow:none; }
 .brm-btn-primary:hover::before { opacity:1; }
 .brm-btn-primary:hover i { transform:translateX(4px); }
-.brm-btn-ghost { background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.55); }
+.brm-btn-ghost { color:#fff; border-color:rgba(255,255,255,.55); }
 .brm-btn-ghost:hover { background:rgba(255,255,255,.12); border-color:#fff; }
 .brm-btn-light { background:#fff; color:#0a0a0a; }
 .brm-btn-light:hover { transform:translateY(-3px); box-shadow:0 14px 40px -10px rgba(255,255,255,.4); }
@@ -170,10 +170,13 @@ html.brm-product-express-page::-webkit-scrollbar-thumb { background:var(--acc); 
 .brm-showcase-inner { position:relative; z-index:2; padding:60px 30px; max-width:760px; }
 .brm-showcase-inner .brm-eyebrow { color:#fff; opacity:.75; }
 .brm-showcase-inner h2 { font-size:58px; line-height:1.05; color:#fff; font-weight:700; letter-spacing:-1px; margin:0 0 18px; }
+.brm-showcase-wordmark { display:block; width:clamp(130px, 12vw, 174px); height:auto; margin:0 auto 18px; }
+.brm-showcase-platform { margin-bottom:26px; }
 .brm-showcase-inner p { font-size:19px; color:rgba(255,255,255,.78); line-height:1.55; max-width:560px; margin:0 auto 30px; }
 .brm-learn { display:inline-flex; align-items:center; gap:10px; font-size:14px; font-weight:700;
-    letter-spacing:2px; text-transform:uppercase; color:#fff; }
+    letter-spacing:2px; text-transform:uppercase; color:#fff; transition:color .3s; }
 .brm-learn i { transition:.3s; }
+.brm-learn:hover { color:var(--acc); }
 .brm-showcase:hover .brm-learn i { transform:translateX(6px); }
 .brm-showcase.brm-feature-band { min-height:100vh; }
 .brm-showcase.brm-feature-band h2 { font-size:72px; }
