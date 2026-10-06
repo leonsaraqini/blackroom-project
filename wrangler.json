@@ -1,6 +1,12 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "blackroom-project",
+	"account_id": "9a7daae0544334208da49728b21d5bac",
+	"routes": [
+		{ "pattern": "blackroomprod.com", "custom_domain": true },
+		{ "pattern": "www.blackroomprod.com", "custom_domain": true },
+		{ "pattern": "api.blackroomprod.com", "custom_domain": true }
+	],
 	"main": "./src/worker/index.ts",
 	"compatibility_date": "2025-10-08",
 	"compatibility_flags": ["nodejs_compat"],
@@ -18,6 +24,8 @@
 		"directory": "./dist/client",
 		"not_found_handling": "single-page-application",
 		"run_worker_first": [
+			"/meta",
+			"/meta/*",
 			"/api/*",
 			"/admin",
 			"/admin/*",

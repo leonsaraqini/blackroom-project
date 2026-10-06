@@ -4,6 +4,11 @@ Blackroom's React site runs on Vite and Cloudflare Workers. The Hono worker
 provides the Freemius sandbox endpoint and proxies `/admin/*` to the telephony
 worker.
 
+The `/meta` Railway proxy, required Railway application changes, verified domain
+configuration, and review/deployment checklist are documented in
+[docs/meta-proxy.md](docs/meta-proxy.md). Do not deploy the proxy before completing
+that Railway contract and configuring the shared secret on both services.
+
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/vite-react-template)
 
 This template provides a minimal setup for building a React application with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.

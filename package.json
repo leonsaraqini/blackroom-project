@@ -38,6 +38,7 @@
 	},
 	"private": true,
 	"scripts": {
+		"test:meta": "node --test scripts/test-meta-proxy.mjs",
 		"build": "tsc -b && vite build",
 		"cf-typegen": "wrangler types",
 		"check": "tsc && vite build && wrangler deploy --dry-run",

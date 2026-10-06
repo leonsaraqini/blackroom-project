@@ -1,7 +1,8 @@
 import { Hono, type Context } from "hono";
 import { Freemius } from "@freemius/sdk";
+import { forwardMeta, type MetaBindings } from "./meta-proxy";
 
-type Bindings = Env & {
+type Bindings = Env & MetaBindings & {
 	ADMIN_WORKER: Fetcher;
 	FREEMIUS_PRODUCT_ID: string;
 	FREEMIUS_API_KEY: string;
@@ -10,6 +11,9 @@ type Bindings = Env & {
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
+
+app.all("/meta", (c) => forwardMeta(c.req.raw, c.env));
+app.all("/meta/*", (c) => forwardMeta(c.req.raw, c.env));
 
 // Release configuration: update these four fields when publishing a new build.
 const kairosExpressRelease = {
