@@ -25,6 +25,16 @@ const bundle = await build({
 
 const mock = `export default { async fetch(request) {
   const url = new URL(request.url);
+  // Validate the contract for every HTTP method and WebSocket upgrade before
+  // the mock health/auth/routes can return a successful response.
+  if (url.origin !== 'https://veo-workflow-production.up.railway.app' ||
+      request.headers.get('X-Forwarded-Host') !== 'blackroomprod.com' ||
+      request.headers.get('X-Forwarded-Proto') !== 'https' ||
+      request.headers.get('X-Forwarded-Prefix') !== '/meta' ||
+      request.headers.get('X-Meta-Proxy-Secret') !== 'test-secret' ||
+      (request.headers.has('Host') && request.headers.get('Host') !== url.host)) {
+    return new Response('Proxy contract failed', {status:400});
+  }
   if (url.pathname === '/unavailable') throw new Error('Mock unavailable');
   if (url.pathname === '/redirect') {
     return new Response(null, {status: Number(url.searchParams.get('status') || 302),
@@ -162,7 +172,12 @@ await test("/meta proxy in the Workers runtime with real asset routing", async (
       const headers = {Upgrade:"websocket", ...(origin ? {Origin:origin} : {})};
       assert.equal((await request("/meta/remote-browser/ws", {headers})).status, 403);
     }
-    const response = await request("/meta/remote-browser/ws", {headers:{Upgrade:"websocket", Origin:"https://blackroomprod.com"}});
+    const response = await request("/meta/remote-browser/ws", {headers:{
+      Upgrade:"websocket", Origin:"https://blackroomprod.com",
+      Host:"attacker.example", "X-Forwarded-Host":"attacker.example",
+      "X-Forwarded-Proto":"http", "X-Forwarded-Prefix":"/wrong",
+      "X-Meta-Proxy-Secret":"attacker",
+    }});
     assert.equal(response.status, 101);
     assert.match(response.headers.get("Set-Cookie"), /Path=\/meta; Secure/);
     const socket = response.webSocket;
@@ -181,6 +196,10 @@ await test("/meta proxy in the Workers runtime with real asset routing", async (
 await test("missing shared secret fails closed without affecting the site", async (t) => {
   const mf = runtime("");
   t.after(() => mf.dispose());
-  assert.equal((await mf.dispatchFetch("https://blackroomprod.com/meta")).status, 503);
+  for (const headers of [{}, {Upgrade:"websocket", Origin:"https://blackroomprod.com"}]) {
+    const response = await mf.dispatchFetch("https://blackroomprod.com/meta", {headers});
+    assert.equal(response.status, 503);
+    assert.equal(await response.text(), "Meta proxy is not configured");
+  }
   assert.equal((await mf.dispatchFetch("https://blackroomprod.com/")).status, 200);
 });
