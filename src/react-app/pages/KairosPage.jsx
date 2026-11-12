@@ -18,7 +18,7 @@ const products = [
     accent2: '#ff3d00',
     href: '/kairos/product-express',
     video: '/img/KairosExpress-HeroSection.mp4',
-    poster: '/img/blackroom/shop/express.svg',
+    poster: '/img/blackroom/shop/express-hero-poster-black.png',
     label: 'Learn more',
   },
   {
@@ -32,7 +32,7 @@ const products = [
     accent: '#43a358',
     accent2: '#43a358',
     video: '/img/KairosCaptions-HeroSection.mp4',
-    poster: '/img/blackroom/shop/express.svg',
+    poster: '/img/blackroom/shop/express-hero-poster-black.png',
     href: '/kairos/product-captions',
     label: 'Learn more',
   },
