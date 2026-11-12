@@ -2,6 +2,7 @@ import ContactPage from './pages/ContactPage.jsx'
 import DuravoPage from './pages/DuravoPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import KairosPage from './pages/KairosPage.jsx'
+import KairosCaptionsPage from './pages/KairosCaptionsPage.jsx'
 import OrderSuccessPage from './pages/OrderSuccessPage.jsx'
 import PekonPage from './pages/PekonPage.jsx'
 import PerlastonePage from './pages/PerlastonePage.jsx'
@@ -32,6 +33,8 @@ const routes = {
   '/positano': PositanoPage,
   '/wiegeparadies': WiegeparadiesPage,
   '/kairos': KairosPage,
+  '/kairos/product-captions': KairosCaptionsPage,
+  '/kairos/captions': KairosCaptionsPage,
   '/product-express': ProductExpressAnimatedPage,
   '/kairos/product-express': ProductExpressAnimatedPage,
   '/kairos/product-express-animated': ProductExpressAnimatedPage,

@@ -8,6 +8,8 @@ type Bindings = Env & MetaBindings & {
 	FREEMIUS_API_KEY: string;
 	FREEMIUS_SECRET_KEY: string;
 	FREEMIUS_PUBLIC_KEY: string;
+	FREEMIUS_CAPTIONS_API_KEY: string;
+	FREEMIUS_CAPTIONS_SECRET_KEY: string;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
@@ -53,6 +55,24 @@ app.get("/kairos-express/latest-version", (c) =>
 		noCacheHeaders,
 	),
 );
+
+app.get("/api/freemius/captions/sandbox", async (c) => {
+	if (!c.env.FREEMIUS_CAPTIONS_API_KEY || !c.env.FREEMIUS_CAPTIONS_SECRET_KEY) {
+		return c.json({ error: "Kairos Captions sandbox credentials are not configured" }, 503);
+	}
+	try {
+		const freemius = new Freemius({
+			productId: "44550",
+			publicKey: "pk_b5b7a4346efc334d807d427b17f59",
+			apiKey: c.env.FREEMIUS_CAPTIONS_API_KEY,
+			secretKey: c.env.FREEMIUS_CAPTIONS_SECRET_KEY,
+		});
+		const sandboxParams = await freemius.checkout.getSandboxParams();
+		return c.json(sandboxParams, 200, { "Cache-Control": "no-store" });
+	} catch {
+		return c.json({ error: "Unable to create Kairos Captions sandbox options" }, 502);
+	}
+});
 
 app.get("/api/freemius/sandbox", async (c) => {
 	const required = [

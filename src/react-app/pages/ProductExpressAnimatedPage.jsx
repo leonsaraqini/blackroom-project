@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import source from '../legacy-pages/product-express-animated.html?raw'
 import ProjectPage from '../components/ProjectPage.jsx'
+import ProductHeroGlassBadge from '../components/ProductHeroGlassBadge.jsx'
 import useFreemiusCheckout from '../hooks/useFreemiusCheckout.js'
 import useProductExpressScrollAnimations from '../hooks/useProductExpressScrollAnimations.js'
 
@@ -29,11 +30,14 @@ export default function ProductExpressAnimatedPage() {
   }, [])
 
   return (
+    <>
     <ProjectPage
       source={source}
       pathname="/kairos/product-express"
       title="Kairos Express"
       useSourceFooter
     />
+    <ProductHeroGlassBadge />
+    </>
   )
 }

@@ -81,3 +81,44 @@ headers after Railway's real edge processes them.
 
 No secret equality claim is made. No deployment, secret write, commit, or push
 was performed as part of this audit.
+
+## Follow-up — 2026-10-07
+
+The user reports Railway commit `aa2fc21` rejects only when the proxy credential
+is missing, duplicated, or fails constant-time comparison. That Railway commit
+and its configuration were not independently inspected from this project.
+
+Fresh production inspection verified the apex still targets `blackroom-project`
+in `production`. Active version `f99dad9c-ef63-4905-bbbf-cca9c9a9e8a7` serves
+100% of traffic. **META_PROXY_SECRET Secret binding exists: yes.** Published code
+reads the environment binding, sets the credential with `headers.set`, and attaches
+that Headers object to the new Request passed directly to fetch. The request URL
+uses the fixed Railway origin with `/meta` stripped. No subsequent credential
+mutation occurs before fetch; redirects remain manual.
+
+The exact proxy function, constants, and helper declarations from that active
+published module were exercised locally in workerd, with the verified production
+compatibility date `2025-10-08`, a dummy secret binding, and a mock upstream.
+Instrumentation captured the Request argument at the fetch call. GET, POST, HEAD,
+PUT, PATCH, DELETE, OPTIONS, and WebSocket upgrade each had exactly one credential
+header matching the dummy binding, correct Railway URL/stripped path/query, and
+correct forwarded headers. Duplicate incoming credential headers were replaced.
+No real credential was used or read. Unrelated checkout SDK initialization was
+excluded from this local trace; no production code was changed.
+
+This is a published-code trace **in a local runtime**, not interception of live
+production packets. It cannot establish header handling after Cloudflare fetch
+or Railway's edge. Live `/meta` still returned Railway 403 `Forbidden`, while
+`/meta/healthz` returned 200; the health endpoint is not evidence of credential
+equality. Local duplicate-credential regression coverage was added; all nine
+runtime tests, TypeScript, targeted lint, and whitespace checks passed.
+
+No Worker code deployment is indicated by these findings. Next, have Railway
+report only credential-header-present, exactly-one-header, and comparison-passed
+booleans for the failing request. If it receives exactly one header but comparison
+fails, privately synchronize the **existing intended credential** in the correct
+Cloudflare production binding and active Railway service/environment. Re-entering
+settings may deploy a configuration version or require a Railway redeployment;
+perform those writes only after authorization. Do not rotate credentials or
+declare them equal based on this audit. No publish, rotation, commit, or push was
+performed for this follow-up.

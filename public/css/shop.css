@@ -403,3 +403,14 @@ border-right: none;
 @media (max-height:520px) and (orientation:landscape) {
     .brm-phero { min-height:520px; height:auto; }
 }
+
+/* Captions theme for shared components with fixed accent colors. */
+html.brm-product-captions-page .brm-footer-heading i,
+html.brm-product-captions-page .brm-trust-chip i,
+html.brm-product-captions-page .brm-footer-note i,
+html.brm-product-captions-page .brm-cookie-modal > p a { color:#43a358; }
+html.brm-product-captions-page .brm-cookie-modal .brm-cookie-ic { background:rgba(67,163,88,.14); color:#43a358; }
+html.brm-product-captions-page .brm-switch input:checked + .brm-track { background:#43a358; }
+html.brm-product-captions-page .brm-price-card.brm-accent { background:linear-gradient(160deg,rgba(67,163,88,.14),rgba(67,163,88,.08)); }
+html.brm-product-captions-page .brm-incl-ic { background:rgba(67,163,88,.12); }
+html.brm-product-captions-page .brm-incl-card:hover { border-color:rgba(67,163,88,.4); }

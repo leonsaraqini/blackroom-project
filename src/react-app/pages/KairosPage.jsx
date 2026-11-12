@@ -12,13 +12,28 @@ const products = [
     eyebrow: 'Adobe After Effects',
     title: 'Kairos Express',
     titleImage: '/img/blackroom/shop/express-wordmark.png',
-    afterEffectsBadge: true,
+    platform: 'after-effects',
     description: 'The expression library & composer for After Effects — save, search and inject your favorite expressions, each with a visual control for every variable.',
     accent: '#ff6a1a',
     accent2: '#ff3d00',
     href: '/kairos/product-express',
     video: '/img/KairosExpress-HeroSection.mp4',
     poster: '/img/blackroom/shop/express.svg',
+    label: 'Learn more',
+  },
+  {
+    id: 'kairos-captions',
+    eyebrow: 'Adobe Premiere Pro',
+    title: 'Kairos Captions',
+    // Express assets and copy are placeholders until Captions media is supplied.
+    titleImage: '/img/blackroom/shop/captions-wordmark.png',
+    platform: 'premiere-pro',
+    description: 'Local auto-captions for Premiere Pro. Transcribe your timeline in one click, fix any word, pick a look, and drop animated captions straight onto your timeline.',
+    accent: '#43a358',
+    accent2: '#43a358',
+    video: '/img/KairosCaptions-HeroSection.mp4',
+    poster: '/img/blackroom/shop/express.svg',
+    href: '/kairos/product-captions',
     label: 'Learn more',
   },
   {
@@ -57,15 +72,7 @@ const products = [
     accent2: '#8c6239',
     image: '/img/blackroom/shop/Kairos_FilmEmulation.jpg',
   },
-  {
-    id: 'kairos-captions',
-    eyebrow: 'Adobe Premiere Pro, After Effects, Final Cut, Davinci Resolve',
-    title: 'Kairos Captions',
-    description: 'Global captions in a single click. Instantly transcribe video in more than 120 languages and style your subtitles using a premium catalog of modern designs.',
-    accent: '#ff4d8d',
-    accent2: '#ff8a00',
-    image: '/img/blackroom/shop/Kairos_Captions.jpg',
-  },
+  
 ]
 
 export default function KairosPage() {

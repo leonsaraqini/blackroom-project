@@ -27,13 +27,13 @@ function loadFreemiusCheckout() {
   })
 }
 
-async function getSandboxOptions() {
-  const response = await fetch(SANDBOX_ENDPOINT)
+async function getSandboxOptions(endpoint) {
+  const response = await fetch(endpoint)
   if (!response.ok) throw new Error(`Freemius sandbox endpoint failed: ${response.status}`)
   return response.json()
 }
 
-export default function useFreemiusCheckout({ sandboxMode = false } = {}) {
+export default function useFreemiusCheckout({ sandboxMode = false, sandboxEndpoint = SANDBOX_ENDPOINT } = {}) {
   useEffect(() => {
     const handleCheckoutClick = async (event) => {
       const trigger = event.target.closest('[data-freemius-checkout]')
@@ -81,7 +81,7 @@ export default function useFreemiusCheckout({ sandboxMode = false } = {}) {
         // Freemius determines the duration and payment requirement from the selected plan.
         // `free` explicitly requests its no-payment-method trial checkout.
         if (isFreeTrial) checkoutOptions.trial = 'free'
-        if (sandboxMode) checkoutOptions.sandbox = await getSandboxOptions()
+        if (sandboxMode) checkoutOptions.sandbox = await getSandboxOptions(sandboxEndpoint)
         await handler.open(checkoutOptions)
       } catch (error) {
         console.error(error)
@@ -96,5 +96,5 @@ export default function useFreemiusCheckout({ sandboxMode = false } = {}) {
 
     document.addEventListener('click', handleCheckoutClick)
     return () => document.removeEventListener('click', handleCheckoutClick)
-  }, [sandboxMode])
+  }, [sandboxMode, sandboxEndpoint])
 }

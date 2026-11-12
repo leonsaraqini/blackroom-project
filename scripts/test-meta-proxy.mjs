@@ -31,6 +31,7 @@ const mock = `export default { async fetch(request) {
       request.headers.get('X-Forwarded-Host') !== 'blackroomprod.com' ||
       request.headers.get('X-Forwarded-Proto') !== 'https' ||
       request.headers.get('X-Forwarded-Prefix') !== '/meta' ||
+      [...request.headers].filter(([name]) => name === 'x-meta-proxy-secret').length !== 1 ||
       request.headers.get('X-Meta-Proxy-Secret') !== 'test-secret' ||
       (request.headers.has('Host') && request.headers.get('Host') !== url.host)) {
     return new Response('Proxy contract failed', {status:400});
@@ -108,6 +109,26 @@ await test("/meta proxy in the Workers runtime with real asset routing", async (
       const response = await request("/meta/api/jobs", {method});
       assert.equal(response.status, 200);
       if (method !== "HEAD") assert.equal((await response.json()).method, method);
+    }
+  });
+
+  await t.test("duplicate client proxy credentials become one runtime credential", async () => {
+    for (const websocket of [false, true]) {
+      const headers = new Headers([
+        ["X-Meta-Proxy-Secret", "spoof-one"],
+        ["X-Meta-Proxy-Secret", "spoof-two"],
+        ["Origin", "https://blackroomprod.com"],
+      ]);
+      if (websocket) headers.set("Upgrade", "websocket");
+      const response = await request("/meta/remote-browser/ws", {headers});
+      assert.equal(response.status, websocket ? 101 : 200);
+      if (websocket) {
+        response.webSocket.accept();
+        response.webSocket.close();
+      } else {
+        const upstream = await response.json();
+        assert.equal(upstream.headers["x-meta-proxy-secret"], "test-secret");
+      }
     }
   });
 

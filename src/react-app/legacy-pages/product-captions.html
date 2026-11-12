@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" type="image/png" href="/img/blackroom/shop/captions-wordmark.png" />
+    <title>Kairos Captions — Animated</title>
+
+    <style>
+        .brm-express-animated .brm-phero-actions { display:none; }
+        .brm-express-animated .brm-pricing-grid.brm-three { display:none; }
+        .brm-captions-pricing-soon { text-align:center; }
+        .brm-captions-coming-soon { display:inline-block; padding:12px 22px; border-radius:6px; background:#43a358; color:#fff; font-size:16px; font-weight:600; }
+        .brm-express-animated .brm-phero-logo { filter:drop-shadow(0 10px 34px rgba(67,163,88,.45)); }
+        .brm-express-animated { overflow:clip; }
+        .brm-express-animated .brm-back-link,
+        .brm-express-animated .brm-phero-logo,
+        .brm-express-animated .brm-phero-badge,
+        .brm-express-animated .brm-phero h1,
+        .brm-express-animated .brm-phero-tag,
+        .brm-express-animated .brm-phero-actions > * { opacity:0; visibility:hidden; }
+        .brm-express-animated .brm-back-link { transform:translateX(-18px); }
+        .brm-express-animated .brm-phero-logo { transform:translateY(28px) scale(.92); }
+        .brm-express-animated .brm-phero-badge { transform:translateY(18px); }
+        .brm-express-animated .brm-phero h1 { transform:translateY(42px); }
+        .brm-express-animated .brm-phero-tag,
+        .brm-express-animated .brm-phero-actions > * { transform:translateY(24px); }
+        .brm-express-animated .brm-phero-media,
+        .brm-express-animated .brm-reel,
+        .brm-express-animated .brm-feature-img,
+        .brm-express-animated .brm-feature-text,
+        .brm-express-animated .brm-hl-card,
+        .brm-express-animated .brm-price-card { will-change:transform, opacity; }
+        .brm-express-animated .brm-feature-img { overflow:hidden; }
+        .brm-express-animated .brm-feature-img video { transition:transform .65s cubic-bezier(.2,.8,.2,1); }
+        .brm-express-animated .brm-feature-img:hover video { transform:scale(1.025); }
+        .brm-express-animated .brm-hl-card,
+        .brm-express-animated .brm-price-card { transition:border-color .3s ease, box-shadow .3s ease; }
+        .brm-express-animated .brm-hl-card:hover,
+        .brm-express-animated .brm-price-card:hover { border-color:rgba(67,163,88,.48); box-shadow:0 18px 55px rgba(0,0,0,.28); }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-price-card {
+            --pricing-pointer-x:50%;
+            --pricing-pointer-y:50%;
+            --pricing-spot-opacity:0;
+            isolation:isolate;
+        }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-price-card > * { position:relative; z-index:2; }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-price-card::after {
+            content:"";
+            position:absolute;
+            inset:0;
+            z-index:1;
+            padding:1.5px;
+            border-radius:inherit;
+            pointer-events:none;
+            opacity:var(--pricing-spot-opacity);
+            background:radial-gradient(190px circle at var(--pricing-pointer-x) var(--pricing-pointer-y), rgba(67,163,88,1), rgba(67,163,88,.55) 35%, transparent 72%);
+            -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+            -webkit-mask-composite:xor;
+            mask-composite:exclude;
+            transition:opacity .22s ease;
+        }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-accent::before {
+            content:"";
+            position:absolute;
+            inset:0;
+            z-index:0;
+            pointer-events:none;
+            opacity:calc(var(--pricing-spot-opacity) * .95);
+            background:radial-gradient(360px circle at var(--pricing-pointer-x) var(--pricing-pointer-y), rgba(67,163,88,.42), rgba(67,163,88,.13) 42%, transparent 72%);
+            transition:opacity .22s ease;
+        }
+        .brm-express-animated .brm-pricing-grid.brm-three .brm-accent { box-shadow:0 0 70px -30px var(--acc), 0 24px 80px -48px rgba(67,163,88,calc(var(--pricing-spot-opacity) * .9)); }
+        .brm-express-animated .brm-faq-item p { overflow:hidden; }
+        .brm-express-animated .brm-faq-item summary i { transition:transform .42s cubic-bezier(.2,.8,.2,1), color .3s ease; }
+        .brm-express-animated .brm-faq-item[open] summary i { transform:rotate(45deg) scale(1.08); }
+        @media (prefers-reduced-motion:reduce) {
+            .brm-express-animated *, .brm-express-animated *::before, .brm-express-animated *::after { scroll-behavior:auto !important; transition-duration:.01ms !important; }
+        }
+    </style>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KQNQCVRN');</script>
+<!-- End Google Tag Manager -->
+
+</head>
+
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQNQCVRN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div class="mil-wrapper" id="top">
+
+        <div class="mil-ball">
+            <span class="mil-icon-1">
+                <svg viewBox="0 0 128 128">
+                    <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2	c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2	L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9	z" />
+                </svg>
+            </span>
+            <div class="mil-more-text">More</div>
+            <div class="mil-choose-text">Сhoose</div>
+        </div>
+
+        <div class="mil-preloader">
+            <div class="mil-preloader-animation">
+                <div class="mil-pos-abs mil-animation-1">
+                    <p class="mil-h3 mil-muted mil-thin">Shaping</p>
+                    <p class="mil-h3 mil-muted">Tomorrow,</p>
+                    <p class="mil-h3 mil-muted mil-thin">Together</p>
+                </div>
+                <div class="mil-pos-abs mil-animation-2">
+                    <div class="mil-reveal-frame">
+                        <p class="mil-reveal-box"></p>
+                        <p class="mil-h3 mil-muted mil-thin">Blackroom Production</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mil-progress-track">
+            <div class="mil-progress"></div>
+        </div>
+
+        <!-- menu -->
+       <div class="mil-menu-frame">
+            <div class="mil-frame-top">
+                <a href="index.html" class="mil-logo">Blackroom</a>
+                <div class="mil-menu-btn"><span></span></div>
+            </div>
+            <div class="container">
+                <div class="mil-menu-content">
+                    <div class="row text-center">
+                        <div class="col-xl-12">
+                            <nav class="mil-main-menu" id="swupMenu">
+                                <ul>
+                                    <li class="mil-has-children"><a href="index.html">Home</a></li>
+                                    <li class="mil-has-children"><a href="portfolio.html">Portfolio</a></li>
+                                    <li class="mil-has-children"><a href="services.html">Services</a></li>
+                                    <li class="mil-has-children"><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mil-curtain"></div>
+
+        <!-- frame -->
+        <div class="mil-frame">
+           <div class="mil-frame-top">
+                <a href="index.html" class="mil-logo"><img src="/img/blackroom/nav-img.png"  alt="backroom logo"></a>
+                <div class="mil-menu-btn"><span></span></div>
+            </div>
+            <div class="mil-frame-bottom">
+                <div class="mil-current-page"></div>
+                <div class="mil-back-to-top">
+                    <a href="#top" class="mil-link mil-dark mil-arrow-place"><span>Back to top</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="mil-content">
+            <div id="swupMain" class="mil-main-transition">
+
+                <div class="mil-dark-bg brm brm-express-animated" style="--acc:#43a358;--acc2:#43a358">
+                    <div class="mi-invert-fix brm-fix">
+
+                        <!-- product hero -->
+                        <section class="brm-phero">
+                            <video class="brm-phero-media" autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                <source src="/img/KairosCaptions-HeroSection.mp4" type="video/mp4">
+                            </video>
+                            <a href="/kairos" class="brm-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Kairos</a>
+                            <div class="brm-phero-inner">
+                                <div class="brm-container">
+                                    <img src="/img/blackroom/shop/captions-wordmark.png" alt="Kairos Captions" class="brm-phero-logo">
+                                    <span class="brm-phero-badge"><svg class="brm-ae-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm2 5.5H6v10h2v-3h1.5a3.5 3.5 0 1 0 0-7zm2.5 5H8v-3h1.5a1.5 1.5 0 0 1 0 3m5-2.5v7.5h2v-4.25a2.35 2.35 0 0 1 .768-.824c.377-.242.921-.426 1.732-.426V9c-.976 0-1.807.196-2.5.56V9z" clip-rule="evenodd"/></svg> Adobe Premiere Pro</span>
+                                    <h1>Kairos Captions</h1>
+                                    
+                                    <p class="brm-phero-tag">Local auto-captions for Premiere Pro. Transcribe your timeline in one click, fix any word, pick a look, and drop animated captions straight onto your timeline.</p>
+                                    <div class="brm-phero-actions">
+                                        <a href="#pricing" class="brm-btn brm-btn-primary">See pricing <i class="fa-solid fa-arrow-right"></i></a>
+                                        <span class="brm-phero-price">from <b>$2.49</b> / on annual plans</span>
+                                    </div>
+                                    <span class="brm-captions-coming-soon">Coming soon</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- intro + reel -->
+                        <section class="brm-intro">
+                            <div class="brm-container">
+                                <!-- <span class="brm-eyebrow">Overview</span> -->
+                                <h2>Stop typing captions by hand.</h2>
+                                <p>Kairos Captions is a panel that lives inside Premiere Pro. Mark an In/Out, press Transcribe, and every word of your edit lands in an editable transcript, all processed on your own machine. Fix what you need, pick a look, and Add captions puts an animated, transparent overlay on a new top track. No After Effects, no uploads.</p>
+                                <div class="brm-reel">
+                                    <video autoplay muted loop playsinline poster="/img/blackroom/shop/captions-reel-poster.png">
+                                        <source src="https://media.blackroomprod.com/KairosCaptions_Hero.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- features -->
+                        <section class="brm-features">
+                            <div class="brm-container">
+
+                                <div class="brm-feature-row">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">Find it fast</span> -->
+                                        <h3>Transcribe in one click</h3>
+                                        <p>Kairos listens to every clip under your In/Out range and turns speech into word-timed captions in 100 languages. Pick the language or let it auto-detect. Everything runs locally, and an NVIDIA GPU makes it several times faster.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> 100 languages + auto-detect</li>
+                                            <li><i class="fa-solid fa-check"></i> Isolate voice from music &amp; noise</li>
+                                            <li><i class="fa-solid fa-check"></i> Vocabulary for names, brands &amp; slang</li>
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosCaptions_Transcribe.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <div class="brm-feature-row brm-reverse">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">See it before you use it</span> -->
+                                        <h3>Edit words like text</h3>
+                                        <p>Every caption is a row of word chips. Double-click to fix a word, click to highlight it as a keyword, and split, merge or reorder captions. Words the model wasn't sure about are underlined in orange, so you know exactly where to look.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> Fix, split, merge &amp; reorder captions</li>
+                                            <li><i class="fa-solid fa-check"></i> Keyword highlights in one click</li>
+                                            <li><i class="fa-solid fa-check"></i> Edited words re-timed from the audio</li>
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosCaptions_Edit.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <div class="brm-feature-row">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">One click, done</span> -->
+                                        <h3>Seven looks, live preview</h3>
+                                        <p>Start from Hormozi, Beast, Karaoke, Boxed, Neon, Clean or Minimal, then make it yours. Change font, size, colors, stroke, background, shadow, spacing and animation. The live preview plays your real words as you tweak.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> 7 presets, every setting editable</li>
+                                            <li><i class="fa-solid fa-check"></i> 5 entrance animations · 6 active-word highlights</li>
+                                            <li><i class="fa-solid fa-check"></i> Live preview with your own transcript</li>
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosCaptions_Looks.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <div class="brm-feature-row brm-reverse">
+                                    <div class="brm-feature-text">
+                                        <!-- <span class="brm-eyebrow">Make it yours</span> -->
+                                        <h3>Straight onto your timeline</h3>
+                                        <p>Add captions renders a transparent, animated ProRes 4444 overlay and places it on a fresh top track at your In point, cut at every caption. You also get an editable .srt file. If you change anything later, update the overlay without transcribing again.</p>
+                                        <ul class="brm-feature-list">
+                                            <li><i class="fa-solid fa-check"></i> Transparent overlay + .srt</li>
+                                            <li><i class="fa-solid fa-check"></i> New top track: nothing below is touched</li>
+                                            <li><i class="fa-solid fa-check"></i> Update anytime, no re-transcribing</li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="brm-feature-img brm-shot">
+                                        <video autoplay muted loop playsinline poster="/img/blackroom/shop/express-hero-poster-black.png">
+                                            <source src="https://media.blackroomprod.com/KairosCaptions_Timeline.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                        <!-- under the hood -->
+                        <section class="brm-highlights">
+                            <div class="brm-container">
+                                <div class="brm-section-head">
+                                    <!-- <span class="brm-eyebrow">What's in the box</span> -->
+                                    <h2>100 languages. Zero uploads.</h2>
+                                    <p>Transcription runs on your own computer, using faster-whisper. Choose Accurate for hard audio, Fast for clean speech, or the German-tuned model. Your audio never leaves your machine.</p>
+                                </div>
+                                <div class="brm-highlights-grid">
+                                    <div class="brm-hl-card"><svg class="brm-ae-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 8l6 6m-7 0l6-6l2-3M2 5h12M7 2h1m14 20l-5-10l-5 10m2-4h6"/></svg><h4>100 languages</h4><p>Auto-detect or pick your own.</p></div>
+                                    <div class="brm-hl-card"><i class="fa-solid fa-wifi"></i><h4>100% local</h4><p>Your audio never leaves your machine.</p></div>
+                                    <div class="brm-hl-card"><svg class="brm-ae-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M2.75 6.25a2.5 2.5 0 0 1 2.5-2.5h13.5a2.5 2.5 0 0 1 2.5 2.5v9a2.5 2.5 0 0 1-2.5 2.5H12.5L8 20.85a.77.77 0 0 1-1.25-.6v-2.5h-1.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M10.5 9a2 2 0 1 0 0 3.5M15.75 9a2 2 0 1 0 0 3.5"/></g></svg><h4>7 caption looks</h4><p>Every setting stays editable.</p></div>
+                                    <div class="brm-hl-card"><svg class="brm-ae-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M9.84 12.4c0 .09 0 .09-.07.09H8c.33-1 .68-2.06 1-3.1c0 .08 0 .16.07.24s.09.33.13.49l.18.56c0 .19.11.37.17.56l.19.57z"/><path fill="currentColor" d="M17.08 11.77a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14a1 1 0 0 0-.04-.24m0 0a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14a1 1 0 0 0-.04-.24m0 0a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14a1 1 0 0 0-.04-.24m0 0a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14a1 1 0 0 0-.04-.24M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5m-4.27 14h-1.62a.14.14 0 0 1-.142-.068a.14.14 0 0 1-.018-.052c-.08-.25-.17-.49-.25-.74s-.2-.57-.29-.86c0-.16-.13-.18-.27-.18H7.62c-.11 0-.11 0-.15.12s-.1.33-.16.5l-.16.52l-.21.61a.2.2 0 0 1 0 .08c0 .13-.16.11-.26.11H5.39c-.15 0-.2-.07-.14-.21s.11-.3.16-.44l.21-.64l.39-1.1c.11-.3.21-.61.31-.92s.19-.53.29-.8l.21-.63l.37-1l.3-.88c.1-.28.2-.56.29-.85a2 2 0 0 0 0-.41c0-.21 0-.21.21-.21H9.8c.16 0 .15 0 .2.15s.18.49.26.73s.15.42.22.62l.24.65l.24.7c.1.27.2.53.29.8l.26.72c.08.24.17.48.26.73s.12.37.19.55s.14.4.22.6s.13.38.2.57l.29.81l.12.35c.04-.01.01.07-.06.07m6-3q.007.135 0 .27c0 .09-.15.12-.24.12h-3.53c.036.328.18.634.41.87a3 3 0 0 0 2.8.18c.08 0 .12 0 .12.08v1.13c0 .18-.07.2-.22.26l-.36.11a2 2 0 0 1-.35.07c-.25 0-.5.07-.75.08s-.34 0-.51 0H16c-.2 0-.41 0-.6-.07a2.7 2.7 0 0 1-1.44-.8a2.6 2.6 0 0 1-.56-.88a2.8 2.8 0 0 1-.2-.75a9 9 0 0 1 0-.88c.015-.361.083-.718.2-1.06a3.2 3.2 0 0 1 .41-.8a2.5 2.5 0 0 1 .9-.82q.235-.136.49-.23a5 5 0 0 1 .56-.1q.255-.015.51 0q.376.006.74.1q.33.093.63.26a2 2 0 0 1 .74.74c.1.18.18.36.26.54q.064.191.1.39a3 3 0 0 1 .03 1.19zm-2.45-1.85a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14a1 1 0 0 0-.06-.26a1 1 0 0 0-.74-.7zm.76.67a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14q0-.148-.04-.29zm0 0a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14q0-.148-.04-.29zm0 0a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14q0-.148-.04-.29zm0 0a1 1 0 0 0-.76-.67a1.7 1.7 0 0 0-.55 0a.93.93 0 0 0-.64.47a1.7 1.7 0 0 0-.2.58H17c.1 0 .13 0 .12-.14q0-.148-.04-.29z"/><path d="M3 3 21 21M21 3 3 21" fill="none" stroke="#000" stroke-width="0.75" stroke-linecap="round"/></svg><h4>No After Effects</h4><p>Renders and places inside Premiere.</p></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- requirements -->
+                        <section class="brm-highlights" >
+                            <div class="brm-container">
+                                <div class="brm-section-head">
+                                    <!-- <span class="brm-eyebrow">Requirements</span> -->
+                                    <h2>What you'll need</h2>
+                                </div>
+                                <div class="brm-highlights-grid brm-requirements-grid">
+                                    <div class="brm-hl-card"><svg class="brm-ae-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm2 5.5H6v10h2v-3h1.5a3.5 3.5 0 1 0 0-7zm2.5 5H8v-3h1.5a1.5 1.5 0 0 1 0 3m5-2.5v7.5h2v-4.25a2.35 2.35 0 0 1 .768-.824c.377-.242.921-.426 1.732-.426V9c-.976 0-1.807.196-2.5.56V9z" clip-rule="evenodd"/></svg><h4>Premiere Pro</h4><p>2021 (15.0) or newer, on Windows 10/11 (64-bit).</p></div>
+                                    <!-- <div class="brm-hl-card"><i class="fa-solid fa-puzzle-piece"></i><h4>CEP panel</h4><p>Opens under Window ▸ Extensions.</p></div> -->
+                                    <div class="brm-hl-card"><i class="fa-solid fa-box-open"></i><h4>Simple install</h4><p>You get a licensed installer by email. No Python, no setup; the speech models download on first run.</p></div>
+                                    <!-- <div class="brm-hl-card"><i class="fa-solid fa-headset"></i><h4>Setup help</h4><p>We'll get you up and running.</p></div> -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- pricing -->
+                        <section class="brm-pricing">
+                            <div class="brm-container">
+                                <div class="brm-section-head" id="pricing">
+                                    <!-- <span class="brm-eyebrow">Pricing</span> -->
+                                    <h2>Choose your plan</h2>
+                                    <p>Every plan includes local transcription, all 7 looks and one-click Add captions.</p>
+                                </div>
+                                <div class="brm-captions-pricing-soon"><span class="brm-captions-coming-soon">Coming soon</span></div>
+                                <div class="brm-pricing-grid brm-three">
+
+                                    <div class="brm-price-card brm-card-first">
+                                        <span class="brm-eyebrow">Standard</span>
+                                        <div class="brm-amt">$2.99 <small>/month</small></div>
+                                        <p>Solo editors &amp; hobbyists.</p>
+                                        <ul class="brm-price-list">
+                                            <li><i class="fa-solid fa-check"></i> Core library — 61 expressions, 6 categories</li>
+                                            <li><i class="fa-solid fa-check"></i> Offline search &amp; live previews</li>
+                                            <li><i class="fa-solid fa-check"></i> Baked + AE-Controls inject</li>
+                                            <li><i class="fa-solid fa-check"></i> Up to 10 custom expressions</li>
+                                            <li><i class="fa-solid fa-check"></i> 1 user · 2 machines · updates included</li>
+                                        </ul>
+                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Captions — Standard Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Get Standard</a>
+                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Captions — Standard Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Start 4-Day Free Trial</a>
+                                        <p class="brm-trial-note">Try all Standard features free for 4 days. No payment required.</p>
+                                    </div>
+
+                                    <div class="brm-price-card brm-accent">
+                                        <span class="brm-eyebrow">Premium · most popular</span>
+                                        <div class="brm-amt">$4.99 <small>/month</small></div>
+                                        <p>Pro motion designers &amp; freelancers.</p>
+                                        <ul class="brm-price-list">
+                                            <li><i class="fa-solid fa-check"></i> Full library — 150+ expressions, all 14 categories</li>
+                                            <li><i class="fa-solid fa-check"></i> Unlimited custom expressions + import/export</li>
+                                            <li><i class="fa-solid fa-check"></i> Ask AI search + 200 credits/mo</li>
+                                            <li><i class="fa-solid fa-check"></i> Cloud sync across your machines</li>
+                                            <li><i class="fa-solid fa-check"></i> Ongoing updates · priority support</li>
+                                        </ul>
+                                        <a href="#" class="brm-btn brm-btn-primary" data-freemius-checkout data-freemius-name="Kairos Captions — Premium Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Get Premium</a>
+                                        <a href="#" class="brm-btn brm-btn-primary" data-freemius-checkout data-freemius-name="Kairos Captions — Premium Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Start 7-Day Free Trial</a>
+                                        <p class="brm-trial-note">Try all Premium features free for 7 days. No payment required.</p>
+                                    </div>
+
+                                    <div class="brm-price-card brm-card-third">
+                                        <span class="brm-eyebrow">Business</span>
+                                        <div class="brm-amt">$29.99 <small>/month</small></div>
+                                        <p>Studios &amp; teams · 10 seats.</p>
+                                        <ul class="brm-price-list">
+                                            <li><i class="fa-solid fa-check"></i> Everything in Premium</li>
+                                            <li><i class="fa-solid fa-check"></i> 10 seats + central licensing &amp; deployment</li>
+                                            <li><i class="fa-solid fa-check"></i> Team shared library</li>
+                                            <li><i class="fa-solid fa-check"></i> Brand kit &amp; locked presets</li>
+                                            <li><i class="fa-solid fa-check"></i> 2,000 AI credits/mo · dedicated support &amp; SLA</li>
+                                        </ul>
+                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Captions — Business Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Get Business</a>
+                                        <a href="/contact" class="brm-btn brm-btn-ghost">Contact Us</a>
+                                        <p class="brm-trial-note">Contact us to discuss a Business trial for your team.</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- faq -->
+                        <section class="brm-faq">
+                            <div class="brm-container">
+                                <div class="brm-section-head">
+                                    <!-- <span class="brm-eyebrow">FAQ</span> -->
+                                    <h2>Good to know</h2>
+                                </div>
+                                <div class="brm-faq-list">
+                                    <details class="brm-faq-item">
+                                        <summary>Which app is Kairos Captions for? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>It's a panel for Adobe Premiere Pro 2021 (15.0) or newer on Windows. After installing, open it from Window ▸ Extensions ▸ Kairos Captions, mark an In/Out on your sequence and press Transcribe.</p>
+                                    </details>
+                                    <details class="brm-faq-item">
+                                        <summary>Is my audio uploaded? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>No. Transcription runs entirely on your computer. You only need internet once to download the speech models, and briefly about once a day to check your license. If you're offline, it keeps working for up to 7 days.</p>
+                                    </details>
+                                    <details class="brm-faq-item">
+                                        <summary>Do I need After Effects? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>No. Captions are rendered as a transparent overlay and land directly on your Premiere timeline.</p>
+                                    </details>
+                                    <details class="brm-faq-item">
+                                        <summary>How does billing work? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>Kairos Captions is a simple [monthly] subscription. Plans start at $[price] / month, every plan starts with a 14-day free trial, and you can cancel anytime.</p>
+                                    </details>
+                                    <details class="brm-faq-item">
+                                        <summary>How is it delivered and installed? <i class="fa-solid fa-plus"></i></summary>
+                                        <p>You'll receive the installer by email. Run it, open Premiere, and the panel sets up its own engine. The speech models download on first use and resume if interrupted.</p>
+                                    </details>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <footer class="mil-dark-bg">
+                    <div class="mi-invert-fix">
+                        <div class="container" style="padding:64px 0;">
+                            <div class="brm-footer-layout">
+                                <div class="brm-footer-info">
+                                    <p class="brm-footer-note"><i class="fa-solid fa-shield-halved"></i> PCI-compliant checkout with SSL encryption. Available payment methods may vary by region.</p>
+                                    <p class="brm-footer-contact">For any help, write to us at <a href="mailto:contact@blackroomprod.com">contact@blackroomprod.com</a></p>
+                                </div>
+                                <div class="brm-footer-payments">
+                                    <img class="brm-security-badge" src="/img/blackroom/shop/security-badge-dark-black-bkg.svg" alt="Secure payments powered by Freemius. Visa, Mastercard, American Express, iDEAL, and PayPal accepted.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <div class="mil-hidden-elements">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="mil-arrow">
+                        <path d="M 14 5.3417969 C 13.744125 5.3417969 13.487969 5.4412187 13.292969 5.6367188 L 13.207031 5.7226562 C 12.816031 6.1136563 12.816031 6.7467188 13.207031 7.1367188 L 17.070312 11 L 4 11 C 3.448 11 3 11.448 3 12 C 3 12.552 3.448 13 4 13 L 17.070312 13 L 13.207031 16.863281 C 12.816031 17.254281 12.816031 17.887344 13.207031 18.277344 L 13.292969 18.363281 C 13.683969 18.754281 14.317031 18.754281 14.707031 18.363281 L 20.363281 12.707031 C 20.754281 12.316031 20.754281 11.682969 20.363281 11.292969 L 14.707031 5.6367188 C 14.511531 5.4412187 14.255875 5.3417969 14 5.3417969 z" />
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/plugins/jquery.min.js"></script>
+    <script src="js/plugins/swup.min.js"></script>
+    <script src="js/plugins/swiper.min.js"></script>
+    <script src="js/plugins/fancybox.min.js"></script>
+    <script src="js/plugins/gsap.min.js"></script>
+    <script src="js/plugins/smooth-scroll.js"></script>
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <script src="js/plugins/ScrollTo.min.js"></script>
+    <script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+(() => {
+  if (!window._emailjsInited && typeof emailjs !== "undefined") {
+    emailjs.init({ publicKey: "UyDn_9uga43SkKTFK" });
+    window._emailjsInited = true;
+  }
+  const SERVICE_ID            = "service_dbj7rap";
+  const SUBSCRIBE_TEMPLATE_ID = "template_saa1vp5";
+  const ensureLive = (id) => {
+    const el = document.getElementById(id);
+    if (el && !el.getAttribute("aria-live")) el.setAttribute("aria-live", "polite");
+    return el;
+  };
+  const disableBtn = (btn, label = "Sending…") => {
+    if (!btn) return () => {};
+    const prev = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<span>${label}</span>`;
+    return () => { btn.disabled = false; btn.innerHTML = prev; };
+  };
+  const sendEmail = (tpl, data) => {
+    if (typeof emailjs === "undefined") return Promise.reject(new Error("EmailJS not loaded"));
+    return emailjs.send(SERVICE_ID, tpl, data);
+  };
+  document.addEventListener("submit", async (e) => {
+    const form = e.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
+    const hp = form.querySelector('input[name="_gotcha"]');
+    if (hp && hp.value) { e.preventDefault(); return; }
+    if (form.matches("#subscribeForm")) {
+      e.preventDefault();
+      const email = form.querySelector("#subscribeEmail")?.value.trim();
+      const resp  = ensureLive("subscribeResponse");
+      const btn   = form.querySelector('button[type="submit"]');
+      const restore = disableBtn(btn);
+      resp && (resp.textContent = "");
+      try {
+        await sendEmail(SUBSCRIBE_TEMPLATE_ID, { email, reply_to: email, source_url: location.href });
+        resp && (resp.textContent = "✅ Email sent! We will contact you as soon as possible.");
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        resp && (resp.innerHTML = "❌ Couldn't subscribe right now. Please try again later or email us at <a href='mailto:contact@blackroomprod.com'>contact@blackroomprod.com</a>.");
+      } finally { restore(); }
+      return;
+    }
+  }, true);
+})();
+</script>
+
+</body>
+
+</html>
