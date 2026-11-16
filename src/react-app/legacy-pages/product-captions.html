@@ -19,10 +19,9 @@
     <title>Kairos Captions — Animated</title>
 
     <style>
-        .brm-express-animated .brm-phero-actions { display:none; }
-        .brm-express-animated .brm-pricing-grid.brm-three { display:none; }
-        .brm-captions-pricing-soon { text-align:center; }
-        .brm-captions-coming-soon { display:inline-block; padding:12px 22px; border-radius:6px; background:#43a358; color:#fff; font-size:16px; font-weight:600; }
+        .brm-express-animated .brm-pricing-grid.brm-captions-single-plan { grid-template-columns:minmax(0,1fr); max-width:460px; margin:0 auto; }
+        .brm-express-animated .brm-phero-actions { display:flex; }
+        .brm-express-animated .brm-pricing-grid.brm-three { display:grid; }
         .brm-express-animated .brm-phero-logo { filter:drop-shadow(0 10px 34px rgba(67,163,88,.45)); }
         .brm-express-animated { overflow:clip; }
         .brm-express-animated .brm-back-link,
@@ -200,9 +199,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <p class="brm-phero-tag">Local auto-captions for Premiere Pro. Transcribe your timeline in one click, fix any word, pick a look, and drop animated captions straight onto your timeline.</p>
                                     <div class="brm-phero-actions">
                                         <a href="#pricing" class="brm-btn brm-btn-primary">See pricing <i class="fa-solid fa-arrow-right"></i></a>
-                                        <span class="brm-phero-price">from <b>$2.49</b> / on annual plans</span>
+                                        <span class="brm-phero-price">from <b>$4.17</b> / on annual plans</span>
                                     </div>
-                                    <span class="brm-captions-coming-soon">Coming soon</span>
                                 </div>
                             </div>
                         </section>
@@ -342,57 +340,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <h2>Choose your plan</h2>
                                     <p>Every plan includes local transcription, all 7 looks and one-click Add captions.</p>
                                 </div>
-                                <div class="brm-captions-pricing-soon"><span class="brm-captions-coming-soon">Coming soon</span></div>
-                                <div class="brm-pricing-grid brm-three">
-
-                                    <div class="brm-price-card brm-card-first">
-                                        <span class="brm-eyebrow">Standard</span>
-                                        <div class="brm-amt">$2.99 <small>/month</small></div>
-                                        <p>Solo editors &amp; hobbyists.</p>
-                                        <ul class="brm-price-list">
-                                            <li><i class="fa-solid fa-check"></i> Core library — 61 expressions, 6 categories</li>
-                                            <li><i class="fa-solid fa-check"></i> Offline search &amp; live previews</li>
-                                            <li><i class="fa-solid fa-check"></i> Baked + AE-Controls inject</li>
-                                            <li><i class="fa-solid fa-check"></i> Up to 10 custom expressions</li>
-                                            <li><i class="fa-solid fa-check"></i> 1 user · 2 machines · updates included</li>
-                                        </ul>
-                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Captions — Standard Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Get Standard</a>
-                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Captions — Standard Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Start 4-Day Free Trial</a>
-                                        <p class="brm-trial-note">Try all Standard features free for 4 days. No payment required.</p>
-                                    </div>
-
+                                <div class="brm-pricing-grid brm-three brm-captions-single-plan">
                                     <div class="brm-price-card brm-accent">
-                                        <span class="brm-eyebrow">Premium · most popular</span>
+                                        <span class="brm-eyebrow">Kairos Captions</span>
                                         <div class="brm-amt">$4.99 <small>/month</small></div>
-                                        <p>Pro motion designers &amp; freelancers.</p>
+                                        <p>Local auto-captions for Premiere Pro.</p>
                                         <ul class="brm-price-list">
-                                            <li><i class="fa-solid fa-check"></i> Full library — 150+ expressions, all 14 categories</li>
-                                            <li><i class="fa-solid fa-check"></i> Unlimited custom expressions + import/export</li>
-                                            <li><i class="fa-solid fa-check"></i> Ask AI search + 200 credits/mo</li>
-                                            <li><i class="fa-solid fa-check"></i> Cloud sync across your machines</li>
-                                            <li><i class="fa-solid fa-check"></i> Ongoing updates · priority support</li>
+                                            <li><i class="fa-solid fa-check"></i> Local transcription in 100 languages + auto-detect</li>
+                                            <li><i class="fa-solid fa-check"></i> Editable transcript, keyword highlights &amp; word timing</li>
+                                            <li><i class="fa-solid fa-check"></i> All 7 looks with live preview &amp; editable styling</li>
+                                            <li><i class="fa-solid fa-check"></i> One-click animated, transparent ProRes 4444 overlay</li>
+                                            <li><i class="fa-solid fa-check"></i> Editable .srt export · update without re-transcribing</li>
+                                            <li><i class="fa-solid fa-check"></i> Works inside Premiere Pro — no After Effects required</li>
                                         </ul>
-                                        <a href="#" class="brm-btn brm-btn-primary" data-freemius-checkout data-freemius-name="Kairos Captions — Premium Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Get Premium</a>
-                                        <a href="#" class="brm-btn brm-btn-primary" data-freemius-checkout data-freemius-name="Kairos Captions — Premium Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Start 7-Day Free Trial</a>
-                                        <p class="brm-trial-note">Try all Premium features free for 7 days. No payment required.</p>
+                                        <a href="#" class="brm-btn brm-btn-primary" data-freemius-checkout data-freemius-name="Kairos Captions" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Get Kairos Captions</a>
+                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-trial="free" data-freemius-checkout data-freemius-name="Kairos Captions" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Start 14-Day Free Trial</a>
+                                        <p class="brm-trial-note">Try Kairos Captions free for 14 days. Cancel anytime.</p>
                                     </div>
-
-                                    <div class="brm-price-card brm-card-third">
-                                        <span class="brm-eyebrow">Business</span>
-                                        <div class="brm-amt">$29.99 <small>/month</small></div>
-                                        <p>Studios &amp; teams · 10 seats.</p>
-                                        <ul class="brm-price-list">
-                                            <li><i class="fa-solid fa-check"></i> Everything in Premium</li>
-                                            <li><i class="fa-solid fa-check"></i> 10 seats + central licensing &amp; deployment</li>
-                                            <li><i class="fa-solid fa-check"></i> Team shared library</li>
-                                            <li><i class="fa-solid fa-check"></i> Brand kit &amp; locked presets</li>
-                                            <li><i class="fa-solid fa-check"></i> 2,000 AI credits/mo · dedicated support &amp; SLA</li>
-                                        </ul>
-                                        <a href="#" class="brm-btn brm-btn-ghost" data-freemius-checkout data-freemius-name="Kairos Captions — Business Expression" data-freemius-product-id="44550" data-freemius-plan-id="78458" data-freemius-public-key="pk_b5b7a4346efc334d807d427b17f59">Get Business</a>
-                                        <a href="/contact" class="brm-btn brm-btn-ghost">Contact Us</a>
-                                        <p class="brm-trial-note">Contact us to discuss a Business trial for your team.</p>
-                                    </div>
-
                                 </div>
                             </div>
                         </section>
@@ -419,7 +383,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     </details>
                                     <details class="brm-faq-item">
                                         <summary>How does billing work? <i class="fa-solid fa-plus"></i></summary>
-                                        <p>Kairos Captions is a simple [monthly] subscription. Plans start at $[price] / month, every plan starts with a 14-day free trial, and you can cancel anytime.</p>
+                                        <p>Kairos Captions is a simple monthly subscription. The plan is $4.99 / month, every plan starts with a 14-day free trial, and you can cancel anytime.</p>
                                     </details>
                                     <details class="brm-faq-item">
                                         <summary>How is it delivered and installed? <i class="fa-solid fa-plus"></i></summary>
