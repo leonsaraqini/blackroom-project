@@ -1896,6 +1896,23 @@ banner
 .mil-inner-banner .mil-banner-content {
   padding: 150px 0 0 0;
 }
+.mil-inner-banner.brm-services-banner .mil-banner-content {
+  padding-bottom: clamp(24px, 3vw, 40px);
+}
+.brm-services-list > .mi-invert-fix > .container {
+  padding-top: clamp(24px, 3vw, 40px);
+}
+.brm-services-list .row {
+  row-gap: 36px;
+}
+.brm-services-list .mil-descr {
+  min-height: 5em;
+}
+@media screen and (max-width: 767px) {
+  .brm-services-list .mil-descr {
+    min-height: 0;
+  }
+}
 @media screen and (max-width: 1200px) {
   .mil-inner-banner .mil-banner-content {
     padding: 180px 0 0 0;
