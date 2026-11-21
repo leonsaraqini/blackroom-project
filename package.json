@@ -38,6 +38,7 @@
 	},
 	"private": true,
 	"scripts": {
+		"test:navigation": "node --test scripts/test-navigation.mjs",
 		"test:meta": "node --test scripts/test-meta-proxy.mjs",
 		"build": "tsc -b && vite build",
 		"cf-typegen": "wrangler types",

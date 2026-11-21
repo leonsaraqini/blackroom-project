@@ -44,11 +44,20 @@ function MenuButton() {
   return <div className="mil-menu-btn"><span /></div>
 }
 
+function SiteLogo({ menu = false }) {
+  return (
+    <a href="/" className="mil-logo" aria-label="Blackroom home">
+      {!menu && <img className="mil-header-logo" src="/img/blackroom/nav-img.png" alt="" />}
+      <span className={menu ? undefined : 'mil-header-name'}>Blackroom</span>
+    </a>
+  )
+}
+
 function Menu({ pathname }) {
   return (
     <div className="mil-menu-frame">
       <div className="mil-frame-top">
-        <a href="/" className="mil-logo">Blackroom</a>
+        <SiteLogo menu />
         <MenuButton />
       </div>
       <div className="container">
@@ -76,7 +85,7 @@ function FixedFrame() {
   return (
     <div className="mil-frame">
       <div className="mil-frame-top">
-        <a href="/" className="mil-logo"><img src="/img/blackroom/nav-img.png" alt="Blackroom logo" /></a>
+        <SiteLogo />
         <MenuButton />
       </div>
       <div className="mil-frame-bottom">
@@ -93,7 +102,7 @@ export default function SiteChrome({ pathname }) {
   return (
     <>
       <Cursor />
-      <Preloader />
+      {pathname === '/' && <Preloader />}
       <Menu pathname={pathname} />
       <div className="mil-curtain" />
       <FixedFrame />

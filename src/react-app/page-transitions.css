@@ -1,0 +1,13 @@
+/* A separate curtain avoids changing the containing block of fixed headers. */
+.page-transition-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: #000;
+  opacity: 1;
+  pointer-events: none;
+}
+
+#root h1[tabindex="-1"]:focus {
+  outline: none;
+}

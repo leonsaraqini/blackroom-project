@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 
 function setupForms() {
   const emailjs = window.emailjs
@@ -55,18 +55,15 @@ function setupForms() {
 }
 
 export default function useLegacyRuntime(title) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.title = title
     window.scrollTo(0, 0)
 
-    const script = document.createElement('script')
-    script.src = '/js/main.js'
-    script.dataset.reactRuntime = 'true'
-    document.body.appendChild(script)
+    const stopRuntime = window.initBlackroomRuntime?.(document.getElementById('root'))
     const removeFormHandlers = setupForms()
 
     return () => {
-      script.remove()
+      stopRuntime?.()
       removeFormHandlers()
     }
   }, [title])

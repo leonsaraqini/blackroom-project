@@ -9,25 +9,10 @@ p.s. I am available for Freelance hire (UI design, web development). email: mill
 
 ------------------------------------------- */
 
-$(function () {
+window.initBlackroomRuntime = function (root) {
+    const context = gsap.context(() => {
 
     "use strict";
-
-    /***************************
-
-    swup
-
-    ***************************/
-    const options = {
-  containers: ['#swupMain', '#swupMenu'],
-  animateHistoryBrowsing: true,
-  // internal paths + hash links only:
-  linkSelector: 'a[href^="/"]:not([data-no-swup]), a[href^="#"]:not([data-no-swup])',
-  animationSelector: '[class="mil-main-transition"]'
-};
-
-    // React owns page routing. The legacy Swup router expected server-rendered
-    // page fragments and conflicts with the single React entry point.
 
     /***************************
 
@@ -51,81 +36,86 @@ $(function () {
     
     ***************************/
 
-    var timeline = gsap.timeline();
+    if (document.querySelector(".mil-preloader")) {
+        var timeline = gsap.timeline();
 
-    timeline.to(".mil-preloader-animation", {
-        opacity: 1,
-    });
-
-    timeline.fromTo(
-        ".mil-animation-1 .mil-h3", {
-            y: "30px",
-            opacity: 0
-        }, {
-            y: "0px",
+        timeline.to(".mil-preloader-animation", {
             opacity: 1,
-            stagger: 0.4
-        },
-    );
+        });
 
-    timeline.to(".mil-animation-1 .mil-h3", {
-        opacity: 0,
-        y: '-30',
-    }, "+=.3");
+        timeline.fromTo(
+            ".mil-animation-1 .mil-h3", {
+                y: "30px",
+                opacity: 0
+            }, {
+                y: "0px",
+                opacity: 1,
+                stagger: 0.4
+            },
+        );
 
-    timeline.fromTo(".mil-reveal-box", 0.1, {
-        opacity: 0,
-    }, {
-        opacity: 1,
-        x: '-30',
-    });
+        timeline.to(".mil-animation-1 .mil-h3", {
+            opacity: 0,
+            y: '-30',
+        }, "+=.3");
 
-    timeline.to(".mil-reveal-box", 0.45, {
-        width: "100%",
-        x: 0,
-    }, "+=.1");
-    timeline.to(".mil-reveal-box", {
-        right: "0"
-    });
-    timeline.to(".mil-reveal-box", 0.3, {
-        width: "0%"
-    });
-    timeline.fromTo(".mil-animation-2 .mil-h3", {
-        opacity: 0,
-    }, {
-        opacity: 1,
-    }, "-=.5");
-    timeline.to(".mil-animation-2 .mil-h3", 0.6, {
-        opacity: 0,
-        y: '-30'
-    }, "+=.5");
-    timeline.to(".mil-preloader", 0.8, {
-        opacity: 0,
-        ease: 'sine',
-    }, "+=.2");
-    timeline.fromTo(".mil-up", 0.8, {
-        opacity: 0,
-        y: 40,
-        scale: .98,
-        ease: 'sine',
+        timeline.fromTo(".mil-reveal-box", 0.1, {
+            opacity: 0,
+        }, {
+            opacity: 1,
+            x: '-30',
+        });
 
-    }, {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        onComplete: function () {
-            $('.mil-preloader').addClass("mil-hidden");
-        },
-    }, "-=1");
+        timeline.to(".mil-reveal-box", 0.45, {
+            width: "100%",
+            x: 0,
+        }, "+=.1");
+        timeline.to(".mil-reveal-box", {
+            right: "0"
+        });
+        timeline.to(".mil-reveal-box", 0.3, {
+            width: "0%"
+        });
+        timeline.fromTo(".mil-animation-2 .mil-h3", {
+            opacity: 0,
+        }, {
+            opacity: 1,
+        }, "-=.5");
+        timeline.to(".mil-animation-2 .mil-h3", 0.6, {
+            opacity: 0,
+            y: '-30'
+        }, "+=.5");
+        timeline.to(".mil-preloader", 0.8, {
+            opacity: 0,
+            ease: 'sine',
+        }, "+=.2");
+        timeline.fromTo(".mil-up", 0.8, {
+            opacity: 0,
+            y: 40,
+            scale: .98,
+            ease: 'sine',
+
+        }, {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            onComplete: function () {
+                $('.mil-preloader').addClass("mil-hidden");
+            },
+        }, "-=1");
+    }
+
     /***************************
 
     anchor scroll
 
     ***************************/
-    $(document).on('click', 'a[href^="#"]', function (event) {
-        // event.preventDefault();
-
-        var target = $($.attr(this, 'href'));
+    $(document).on('click.blackroom', 'a[href^="#"]', function (event) {
+        const id = this.getAttribute('href').slice(1);
+        const element = id && document.getElementById(decodeURIComponent(id));
+        if (!element) return;
+        event.preventDefault();
+        var target = $(element);
         var offset = 0;
 
         if ($(window).width() < 1200) {
@@ -141,11 +131,11 @@ $(function () {
     append
 
     ***************************/
-   $(document).ready(function () {
+    {
         $(".mil-arrow").clone().appendTo(".mil-arrow-place");
         $(".mil-dodecahedron").clone().appendTo(".mil-animation");
         $(".mil-lines").clone().appendTo(".mil-lines-place");
-    });
+    }
     /***************************
 
     accordion
@@ -157,7 +147,7 @@ $(function () {
     let menuToggles = groups.map(createAnimation);
 
     menus.forEach((menu) => {
-        menu.addEventListener("click", () => toggleMenu(menu));
+        $(menu).on("click.blackroom", () => toggleMenu(menu));
     });
 
     function toggleMenu(clickedMenu) {
@@ -223,7 +213,7 @@ $(function () {
         opacity: 1,
         ease: 'sine',
         scrollTrigger: {
-            trigger: "body",
+            trigger: document.body,
             start: "top -40%",
             end: "top -40%",
             toggleActions: "play none reverse none"
@@ -241,7 +231,7 @@ $(function () {
         yPercent: -50,
     });
 
-    document.addEventListener('pointermove', movecursor);
+    $(document).on('pointermove.blackroom', movecursor);
 
     function movecursor(e) {
         gsap.to(cursor, {
@@ -252,7 +242,7 @@ $(function () {
         });
     }
 
-    $('.mil-drag, .mil-more, .mil-choose').mouseover(function () {
+    $('.mil-drag, .mil-more, .mil-choose').on("mouseover.blackroom", function () {
         gsap.to($(cursor), .2, {
             width: 90,
             height: 90,
@@ -261,7 +251,7 @@ $(function () {
         });
     });
 
-    $('.mil-drag, .mil-more, .mil-choose').mouseleave(function () {
+    $('.mil-drag, .mil-more, .mil-choose').on("mouseleave.blackroom", function () {
         gsap.to($(cursor), .2, {
             width: 20,
             height: 20,
@@ -270,7 +260,7 @@ $(function () {
         });
     });
 
-    $('.mil-accent-cursor').mouseover(function () {
+    $('.mil-accent-cursor').on("mouseover.blackroom", function () {
         gsap.to($(cursor), .2, {
             background: accent,
             ease: 'sine',
@@ -278,7 +268,7 @@ $(function () {
         $(cursor).addClass('mil-accent');
     });
 
-    $('.mil-accent-cursor').mouseleave(function () {
+    $('.mil-accent-cursor').on("mouseleave.blackroom", function () {
         gsap.to($(cursor), .2, {
             background: dark,
             ease: 'sine',
@@ -286,49 +276,49 @@ $(function () {
         $(cursor).removeClass('mil-accent');
     });
 
-    $('.mil-drag').mouseover(function () {
+    $('.mil-drag').on("mouseover.blackroom", function () {
         gsap.to($('.mil-ball .mil-icon-1'), .2, {
             scale: '1',
             ease: 'sine',
         });
     });
 
-    $('.mil-drag').mouseleave(function () {
+    $('.mil-drag').on("mouseleave.blackroom", function () {
         gsap.to($('.mil-ball .mil-icon-1'), .2, {
             scale: '0',
             ease: 'sine',
         });
     });
 
-    $('.mil-more').mouseover(function () {
+    $('.mil-more').on("mouseover.blackroom", function () {
         gsap.to($('.mil-ball .mil-more-text'), .2, {
             scale: '1',
             ease: 'sine',
         });
     });
 
-    $('.mil-more').mouseleave(function () {
+    $('.mil-more').on("mouseleave.blackroom", function () {
         gsap.to($('.mil-ball .mil-more-text'), .2, {
             scale: '0',
             ease: 'sine',
         });
     });
 
-    $('.mil-choose').mouseover(function () {
+    $('.mil-choose').on("mouseover.blackroom", function () {
         gsap.to($('.mil-ball .mil-choose-text'), .2, {
             scale: '1',
             ease: 'sine',
         });
     });
 
-    $('.mil-choose').mouseleave(function () {
+    $('.mil-choose').on("mouseleave.blackroom", function () {
         gsap.to($('.mil-ball .mil-choose-text'), .2, {
             scale: '0',
             ease: 'sine',
         });
     });
 
-    $('a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input , textarea, .mil-accordion-menu').mouseover(function () {
+    $('a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input , textarea, .mil-accordion-menu').on("mouseover.blackroom", function () {
         gsap.to($(cursor), .2, {
             scale: 0,
             ease: 'sine',
@@ -338,7 +328,7 @@ $(function () {
         });
     });
 
-    $('a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input, textarea, .mil-accordion-menu').mouseleave(function () {
+    $('a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input, textarea, .mil-accordion-menu').on("mouseleave.blackroom", function () {
         gsap.to($(cursor), .2, {
             scale: 1,
             ease: 'sine',
@@ -349,13 +339,13 @@ $(function () {
         });
     });
 
-    $('body').mousedown(function () {
+    $('body').on("mousedown.blackroom", function () {
         gsap.to($(cursor), .2, {
             scale: .1,
             ease: 'sine',
         });
     });
-    $('body').mouseup(function () {
+    $('body').on("mouseup.blackroom", function () {
         gsap.to($(cursor), .2, {
             scale: 1,
             ease: 'sine',
@@ -366,7 +356,7 @@ $(function () {
      menu
 
     ***************************/
-    $('.mil-menu-btn').on("click", function () {
+    $('.mil-menu-btn').on("click.blackroom", function () {
         $('.mil-menu-btn').toggleClass('mil-active');
         $('.mil-menu').toggleClass('mil-active');
         $('.mil-menu-frame').toggleClass('mil-active');
@@ -376,7 +366,7 @@ $(function () {
     main menu
 
     ***************************/
-    $('.mil-has-children a').on('click', function () {
+    $('.mil-has-children a').on('click.blackroom', function () {
         $('.mil-has-children ul').removeClass('mil-active');
         $('.mil-has-children a').removeClass('mil-active');
         $(this).toggleClass('mil-active');
@@ -598,440 +588,22 @@ $(function () {
         },
     });
 
-    /*----------------------------------------------------------
-    ------------------------------------------------------------
+    }, root);
 
-    REINIT
-
-    ------------------------------------------------------------
-    ----------------------------------------------------------*/
-    document.addEventListener("swup:contentReplaced", function () {
-
-        $('html, body').animate({
-            scrollTop: 0,
-        }, 0);
-
-        ScrollTrigger.refresh();
-        /***************************
-
-         menu
-
-        ***************************/
-        $('.mil-menu-btn').removeClass('mil-active');
-        $('.mil-menu').removeClass('mil-active');
-        $('.mil-menu-frame').removeClass('mil-active');
-        /***************************
-
-        append
-
-        ***************************/
-        $(document).ready(function () {
-            $(".mil-arrow-place .mil-arrow, .mil-animation .mil-dodecahedron, .mil-current-page a").remove();
-            $(".mil-arrow").clone().appendTo(".mil-arrow-place");
-            $(".mil-dodecahedron").clone().appendTo(".mil-animation");
-            $(".mil-lines").clone().appendTo(".mil-lines-place");
+    return () => {
+        $(document).off('.blackroom');
+        $('body').off('.blackroom');
+        $(root).find('*').addBack().off('.blackroom');
+        $(root).find('*').each(function () {
+            if (this.swiper) this.swiper.destroy(true, true);
         });
-        /***************************
-
-        accordion
-
-        ***************************/
-
-        let groups = gsap.utils.toArray(".mil-accordion-group");
-        let menus = gsap.utils.toArray(".mil-accordion-menu");
-        let menuToggles = groups.map(createAnimation);
-
-        menus.forEach((menu) => {
-            menu.addEventListener("click", () => toggleMenu(menu));
-        });
-
-        function toggleMenu(clickedMenu) {
-            menuToggles.forEach((toggleFn) => toggleFn(clickedMenu));
+        if ($.fancybox) {
+            $.fancybox.close(true);
+            $.fancybox.destroy();
         }
-
-        function createAnimation(element) {
-            let menu = element.querySelector(".mil-accordion-menu");
-            let box = element.querySelector(".mil-accordion-content");
-            let symbol = element.querySelector(".mil-symbol");
-            let minusElement = element.querySelector(".mil-minus");
-            let plusElement = element.querySelector(".mil-plus");
-
-            gsap.set(box, {
-                height: "auto",
-            });
-
-            let animation = gsap
-                .timeline()
-                .from(box, {
-                    height: 0,
-                    duration: 0.4,
-                    ease: "sine"
-                })
-                .from(minusElement, {
-                    duration: 0.4,
-                    autoAlpha: 0,
-                    ease: "none",
-                }, 0)
-                .to(plusElement, {
-                    duration: 0.4,
-                    autoAlpha: 0,
-                    ease: "none",
-                }, 0)
-                .to(symbol, {
-                    background: accent,
-                    ease: "none",
-                }, 0)
-                .reverse();
-
-            return function (clickedMenu) {
-                if (clickedMenu === menu) {
-                    animation.reversed(!animation.reversed());
-                } else {
-                    animation.reverse();
-                }
-            };
-        }
-
-        /***************************
-
-        cursor
-
-        ***************************/
-
-        $('.mil-drag, .mil-more, .mil-choose').mouseover(function () {
-            gsap.to($(cursor), .2, {
-                width: 90,
-                height: 90,
-                opacity: 1,
-                ease: 'sine',
-            });
-        });
-
-        $('.mil-drag, .mil-more, .mil-choose').mouseleave(function () {
-            gsap.to($(cursor), .2, {
-                width: 20,
-                height: 20,
-                opacity: .1,
-                ease: 'sine',
-            });
-        });
-
-        $('.mil-accent-cursor').mouseover(function () {
-            gsap.to($(cursor), .2, {
-                background: accent,
-                ease: 'sine',
-            });
-            $(cursor).addClass('mil-accent');
-        });
-
-        $('.mil-accent-cursor').mouseleave(function () {
-            gsap.to($(cursor), .2, {
-                background: dark,
-                ease: 'sine',
-            });
-            $(cursor).removeClass('mil-accent');
-        });
-
-        $('.mil-drag').mouseover(function () {
-            gsap.to($('.mil-ball .mil-icon-1'), .2, {
-                scale: '1',
-                ease: 'sine',
-            });
-        });
-
-        $('.mil-drag').mouseleave(function () {
-            gsap.to($('.mil-ball .mil-icon-1'), .2, {
-                scale: '0',
-                ease: 'sine',
-            });
-        });
-
-        $('.mil-more').mouseover(function () {
-            gsap.to($('.mil-ball .mil-more-text'), .2, {
-                scale: '1',
-                ease: 'sine',
-            });
-        });
-
-        $('.mil-more').mouseleave(function () {
-            gsap.to($('.mil-ball .mil-more-text'), .2, {
-                scale: '0',
-                ease: 'sine',
-            });
-        });
-
-        $('.mil-choose').mouseover(function () {
-            gsap.to($('.mil-ball .mil-choose-text'), .2, {
-                scale: '1',
-                ease: 'sine',
-            });
-        });
-
-        $('.mil-choose').mouseleave(function () {
-            gsap.to($('.mil-ball .mil-choose-text'), .2, {
-                scale: '0',
-                ease: 'sine',
-            });
-        });
-
-        $('a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input , textarea, .mil-accordion-menu').mouseover(function () {
-            gsap.to($(cursor), .2, {
-                scale: 0,
-                ease: 'sine',
-            });
-            gsap.to($('.mil-ball svg'), .2, {
-                scale: 0,
-            });
-        });
-
-        $('a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input, textarea, .mil-accordion-menu').mouseleave(function () {
-            gsap.to($(cursor), .2, {
-                scale: 1,
-                ease: 'sine',
-            });
-
-            gsap.to($('.mil-ball svg'), .2, {
-                scale: 1,
-            });
-        });
-
-        $('body').mousedown(function () {
-            gsap.to($(cursor), .2, {
-                scale: .1,
-                ease: 'sine',
-            });
-        });
-        $('body').mouseup(function () {
-            gsap.to($(cursor), .2, {
-                scale: 1,
-                ease: 'sine',
-            });
-        });
-        /***************************
-
-        main menu
-
-        ***************************/
-        $('.mil-has-children a').on('click', function () {
-            $('.mil-has-children ul').removeClass('mil-active');
-            $('.mil-has-children a').removeClass('mil-active');
-            $(this).toggleClass('mil-active');
-            $(this).next().toggleClass('mil-active');
-        });
-        /***************************
-
-        scroll animations
-
-        ***************************/
-
-        const appearance = document.querySelectorAll(".mil-up");
-
-        appearance.forEach((section) => {
-            gsap.fromTo(section, {
-                opacity: 0,
-                y: 40,
-                scale: .98,
-                ease: 'sine',
-
-            }, {
-                y: 0,
-                opacity: 1,
-                scale: 1,
-                duration: .4,
-                scrollTrigger: {
-                    trigger: section,
-                    toggleActions: 'play none none reverse',
-                }
-            });
-        });
-
-        const scaleImage = document.querySelectorAll(".mil-scale");
-
-        scaleImage.forEach((section) => {
-            var value1 = $(section).data("value-1");
-            var value2 = $(section).data("value-2");
-            gsap.fromTo(section, {
-                ease: 'sine',
-                scale: value1,
-
-            }, {
-                scale: value2,
-                scrollTrigger: {
-                    trigger: section,
-                    scrub: true,
-                    toggleActions: 'play none none reverse',
-                }
-            });
-        });
-
-        const parallaxImage = document.querySelectorAll(".mil-parallax");
-
-
-        if ($(window).width() > 960) {
-            parallaxImage.forEach((section) => {
-                var value1 = $(section).data("value-1");
-                var value2 = $(section).data("value-2");
-                gsap.fromTo(section, {
-                    ease: 'sine',
-                    y: value1,
-
-                }, {
-                    y: value2,
-                    scrollTrigger: {
-                        trigger: section,
-                        scrub: true,
-                        toggleActions: 'play none none reverse',
-                    }
-                });
-            });
-        }
-
-        const rotate = document.querySelectorAll(".mil-rotate");
-
-        rotate.forEach((section) => {
-            var value = $(section).data("value");
-            gsap.fromTo(section, {
-                ease: 'sine',
-                rotate: 0,
-
-            }, {
-                rotate: value,
-                scrollTrigger: {
-                    trigger: section,
-                    scrub: true,
-                    toggleActions: 'play none none reverse',
-                }
-            });
-        });
-        /***************************
-
-        fancybox
-
-        ***************************/
-        $('[data-fancybox="gallery"]').fancybox({
-            buttons: [
-            "slideShow",
-            "zoom",
-            "fullScreen",
-            "close"
-          ],
-            loop: false,
-            protect: true
-        });
-        $.fancybox.defaults.hash = false;
-        /***************************
-
-        reviews slider
-
-        ***************************/
-
-        var menu = ['<div class="mil-custom-dot mil-slide-1"></div>', '<div class="mil-custom-dot mil-slide-2"></div>', '<div class="mil-custom-dot mil-slide-3"></div>', '<div class="mil-custom-dot mil-slide-4"></div>', '<div class="mil-custom-dot mil-slide-5"></div>', '<div class="mil-custom-dot mil-slide-6"></div>', '<div class="mil-custom-dot mil-slide-7"></div>']
-        var mySwiper = new Swiper('.mil-reviews-slider', {
-            // If we need pagination
-            pagination: {
-                el: '.mil-revi-pagination',
-                clickable: true,
-                renderBullet: function (index, className) {
-                    return '<span class="' + className + '">' + (menu[index]) + '</span>';
-                },
-            },
-            speed: 800,
-            effect: 'fade',
-            parallax: true,
-            navigation: {
-                nextEl: '.mil-revi-next',
-                prevEl: '.mil-revi-prev',
-            },
-        })
-
-        /***************************
-
-        infinite slider
-
-        ***************************/
-        var swiper = new Swiper('.mil-infinite-show', {
-            slidesPerView: 2,
-            spaceBetween: 30,
-            speed: 5000,
-            autoplay: true,
-            autoplay: {
-                delay: 0,
-            },
-            loop: true,
-            freeMode: true,
-            breakpoints: {
-                992: {
-                    slidesPerView: 4,
-                },
-            },
-        });
-
-        /***************************
-
-        portfolio slider
-
-        ***************************/
-        var swiper = new Swiper('.mil-portfolio-slider', {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            speed: 800,
-            parallax: true,
-            mousewheel: {
-                enable: true
-            },
-            navigation: {
-                nextEl: '.mil-portfolio-next',
-                prevEl: '.mil-portfolio-prev',
-            },
-            pagination: {
-                el: '.swiper-portfolio-pagination',
-                type: 'fraction',
-            },
-        });
-        /***************************
-
-        1 item slider
-
-        ***************************/
-        var swiper = new Swiper('.mil-1-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            speed: 800,
-            parallax: true,
-            navigation: {
-                nextEl: '.mil-portfolio-next',
-                prevEl: '.mil-portfolio-prev',
-            },
-            pagination: {
-                el: '.swiper-portfolio-pagination',
-                type: 'fraction',
-            },
-        });
-        /***************************
-
-        2 item slider
-
-        ***************************/
-        var swiper = new Swiper('.mil-2-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            speed: 800,
-            parallax: true,
-            navigation: {
-                nextEl: '.mil-portfolio-next',
-                prevEl: '.mil-portfolio-prev',
-            },
-            pagination: {
-                el: '.swiper-portfolio-pagination',
-                type: 'fraction',
-            },
-            breakpoints: {
-                992: {
-                    slidesPerView: 2,
-                },
-            },
-        });
-
-    });
-
-});
+        context.revert();
+        // Hover callbacks can create tweens after the initial context runs.
+        gsap.killTweensOf(root.querySelectorAll('*'));
+        $('html, body').stop(true);
+    };
+};

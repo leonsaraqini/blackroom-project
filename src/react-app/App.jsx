@@ -1,3 +1,5 @@
+import usePageTransitions from './hooks/usePageTransitions.js'
+import './page-transitions.css'
 import ContactPage from './pages/ContactPage.jsx'
 import DuravoPage from './pages/DuravoPage.jsx'
 import HomePage from './pages/HomePage.jsx'
@@ -46,6 +48,12 @@ function normalisePath(pathname) {
 }
 
 export default function App() {
-  const Page = routes[normalisePath(window.location.pathname)] || HomePage
-  return <Page />
+  const { location, curtain } = usePageTransitions(routes, normalisePath)
+  const Page = routes[normalisePath(location.url.pathname)] || HomePage
+  return (
+    <>
+      <Page key={location.key} />
+      <div ref={curtain} className="page-transition-curtain" aria-hidden="true" />
+    </>
+  )
 }

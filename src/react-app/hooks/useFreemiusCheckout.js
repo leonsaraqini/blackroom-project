@@ -73,7 +73,7 @@ export default function useFreemiusCheckout({ sandboxMode = false, sandboxEndpoi
                 trialEndsAt,
               }))
             } finally {
-              window.location.assign('/order-success')
+              window.dispatchEvent(new CustomEvent('blackroom:navigate', { detail: '/order-success' }))
             }
           },
         }

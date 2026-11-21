@@ -1477,6 +1477,22 @@ frame
   pointer-events: all;
 }
 
+/* Lock the document for either overlay. Removing the overlay (including route
+   unmounts) releases the lock, while overlapping overlays keep it locked. */
+html:has(.mil-menu-frame.mil-active),
+html:has(.mil-preloader:not(.mil-hidden)) {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+  scrollbar-gutter: stable;
+}
+
+html:has(.mil-menu-frame.mil-active) body,
+html:has(.mil-preloader:not(.mil-hidden)) body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 .mil-frame-top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1489,8 +1505,30 @@ frame
           align-items: center;
 }
 .mil-frame-top .mil-logo {
+  display: flex;
+  align-items: center;
+  min-height: 100px;
+  line-height: 1;
   pointer-events: all;
   color: rgb(0, 0, 0);
+}
+
+.mil-frame-top .mil-header-name {
+  display: none;
+}
+
+.mil-menu-frame.mil-active ~ .mil-frame .mil-header-logo {
+  display: none;
+}
+
+.mil-menu-frame.mil-active ~ .mil-frame .mil-header-name {
+  display: inline;
+}
+
+@media screen and (max-width: 1200px) {
+  .mil-frame-top .mil-logo {
+    min-height: 65px;
+  }
 }
 
 /* -------------------------------------------
